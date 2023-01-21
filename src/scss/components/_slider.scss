@@ -1,0 +1,55 @@
+
+.swiper {
+    &-desc {
+      margin-bottom: 40px;
+    }
+  
+    .slick-dots {
+      padding-top: 20px;
+      display: flex;
+      justify-content: center;
+      list-style-type: none;
+      li {
+        margin-right: 8px;
+        button {
+          display: block;
+          text-indent: -9999px;
+          border: none;
+          border-radius: 100%;
+          width: 12px;
+          height: 12px;
+          background-color: #efeeef;
+        }
+      }
+      .slick-active {
+        button {
+          background-color: $titleColor;
+        }
+      }
+    }
+  }
+  .avatar {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: cover;
+    }
+    h4 {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 25px;
+      color: $titleColor;
+    }
+    span {
+      display: block;
+      text-align: left;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 25px;
+      color: $grayColor;
+    }
+  }

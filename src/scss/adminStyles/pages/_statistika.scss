@@ -1,0 +1,29 @@
+.statistika {
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 870px;
+    margin-bottom: 40px;
+  }
+  &__box-item {
+    text-align: center;
+  }
+  &__box-num {
+    display: block;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 75px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #343434;
+  }
+  &__box-name {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #c4c4c4;
+  }
+}

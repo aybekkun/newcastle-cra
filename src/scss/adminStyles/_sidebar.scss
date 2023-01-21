@@ -1,0 +1,54 @@
+.sidebar {
+  background-color: #f1f1f1;
+  position: relative;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #343434;
+
+  &__inner {
+    position: sticky;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px 15px 120px;
+  }
+  .logo {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__top {
+    margin-bottom: 50px;
+  }
+  &__middle {
+    flex: 1;
+  }
+  &__link {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    padding-left: 15px;
+    svg {
+      margin-right: 15px;
+    }
+    text-transform: capitalize;
+    &.active {
+      background: #0832de;
+      color: #fff;
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
+  }
+}

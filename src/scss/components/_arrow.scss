@@ -1,0 +1,10 @@
+.arrow {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: initial;
+  }
+}

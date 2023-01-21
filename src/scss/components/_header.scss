@@ -1,0 +1,85 @@
+.header {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.1em;
+  color: $titleColor;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+
+  &__inner {
+    display: flex;
+    height: 80px;
+    align-items: center;
+  }
+  &__signup {
+    color: $white;
+    background-color: $blueColor;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-left: 48px;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      color: $white;
+      opacity: 0.9;
+    }
+  }
+}
+
+.nav {
+  display: flex;
+  flex: 1;
+  &__list {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    list-style: none;
+  }
+  &__list-item + li {
+    margin-left: 40px;
+  }
+  &__overlay {
+    display: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+}
+
+.menu {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  span {
+    display: block;
+    height: 3px;
+    width: 30px;
+    border-radius: 3px;
+    background-color: $titleColor;
+    transition: all 0.3s ease;
+  }
+  &.active {
+    justify-content: center;
+    span {
+      position: absolute;
+    }
+    span:nth-child(1) {
+      transform: rotate(-45deg);
+    }
+    span:nth-child(2) {
+      transform: translateX(-100px);
+    }
+    span:nth-child(3) {
+      transform: rotate(45deg);
+    }
+  }
+}

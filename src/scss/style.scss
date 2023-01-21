@@ -1,0 +1,18 @@
+@import "vars";
+@import "reset";
+@import "global";
+
+/* components */
+@import "components";
+
+/* pages */
+@import "pages/home";
+@import "pages/course";
+@import "pages/register";
+@import "pages/notfound";
+@import "pages/about";
+
+/* admin */
+
+/* media queries */
+@import "media";

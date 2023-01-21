@@ -1,0 +1,16 @@
+@import "sidebar";
+@import "navaccordion";
+
+/* pages */
+@import "pages/general";
+@import "pages/statistika";
+@import "pages/addcourse";
+@import "pages/lessonAdd";
+.admin {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  &__main {
+    min-height: 100vh;
+    padding: 35px 20px;
+  }
+}

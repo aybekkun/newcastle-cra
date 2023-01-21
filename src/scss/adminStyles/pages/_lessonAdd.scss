@@ -1,0 +1,21 @@
+.lesson {
+  h3 {
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
+  &__info {
+    ol {
+      counter-reset: item;
+      padding-left: 20px;
+    }
+    li {
+      display: block;
+      padding: 2px;
+      font-size: 16px;
+    }
+    li:before {
+      content: counters(item, ".") " ";
+      counter-increment: item;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.course__info {
+    h3 {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 29px;
+      color: $titleColor;
+      margin-bottom: 46px;
+    }
+    img {
+      margin-right: 12px;
+    }
+    h4 {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      color: $titleColor;
+    }
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: $grayColor;
+    }
+    &-box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      grid-column-gap: 34px;
+      grid-row-gap: 40px;
+    }
+  }
