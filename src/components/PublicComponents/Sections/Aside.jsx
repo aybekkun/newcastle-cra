@@ -4,7 +4,7 @@ import Order from "../Order";
 import Accordion from "../Accordion";
 import AccordionItem from "../AccordionItem";
 const Aside = ({ id }) => {
-  const { course } = useSelector((state) => state.courses);
+  const { course, isLoading } = useSelector((state) => state.courses);
   const { user } = useSelector((state) => state.auth);
 
   return (
@@ -31,7 +31,7 @@ const Aside = ({ id }) => {
             ))}
           </Accordion>
         ))}
-      <Order id={id} />
+      {!isLoading && <Order id={id} />}
     </aside>
   );
 };

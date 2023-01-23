@@ -13,6 +13,10 @@
 @import "pages/about";
 
 /* admin */
-
+.quote {
+  p {
+    color: #667385;
+  }
+}
 /* media queries */
 @import "media";

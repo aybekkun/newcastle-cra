@@ -90,7 +90,7 @@ const Output = ({ block }) => {
 const Quote = ({ block }) => {
   const [active, setActive] = React.useState(false);
   return (
-    <>
+    <div className="quote">
       <button
         onClick={() => setActive((prev) => !prev)}
         style={{ marginBottom: "10px", marginTop: "10px" }}
@@ -99,7 +99,7 @@ const Quote = ({ block }) => {
         Show
       </button>
       {active && <p>{parse(block.data.text)}</p>}
-    </>
+    </div>
   );
 };
 

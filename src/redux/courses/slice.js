@@ -5,6 +5,7 @@ const initialState = {
   course: {},
   materials: [],
   isSending: false,
+  isLoading: true,
   total: 0,
 };
 
@@ -24,10 +25,15 @@ export const coursesSlice = createSlice({
     builder.addCase(fetchCourse.fulfilled, (state, action) => {
       state.course = action.payload.data;
       state.materials = action.payload.data.lessons;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchCourse.pending, (state) => {
+      state.isLoading = true;
     });
     builder.addCase(fetchCourse.rejected, (state, action) => {
       state.course = {};
       state.materials = [];
+      state.isLoading = false;
     });
     builder.addCase(createCourse.pending, (state, action) => {
       state.isSending = true;
