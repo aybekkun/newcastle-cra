@@ -10,6 +10,7 @@
   display: grid;
   grid-template-columns: 2fr 10fr;
   &__main {
+    position: relative;
     min-height: 100vh;
     padding: 35px 20px;
   }

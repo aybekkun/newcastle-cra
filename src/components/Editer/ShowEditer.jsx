@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 import Test from "../PublicComponents/Test";
 const ShowEditer = ({ blocks }) => {
   if (blocks) {
-    return blocks.map((output,i) => <Output key={i} block={output} />);
+    return blocks.map((output, i) => <Output key={i} block={output} />);
   }
   return <h2>Нет данных</h2>;
 };
@@ -98,7 +98,7 @@ const Quote = ({ block }) => {
       >
         Show
       </button>
-      {active && <p>{parse(block.data.text)}</p>}
+      {active && <p>{block.data.text ? parse(block.data.text) : "null"}</p>}
     </div>
   );
 };
