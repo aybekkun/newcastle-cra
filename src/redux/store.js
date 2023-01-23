@@ -5,7 +5,7 @@ import courses from "./courses/slice";
 import lessons from "./lessons/slice.js";
 import auth from "./auth/slice.js";
 import checkTest from "./checkTest/slice.js";
-
+import orders from "./orders/slice.js";
 const persistConfig = {
   key: "root",
   version: 1,
@@ -19,6 +19,7 @@ const store = configureStore({
     lessons,
     checkTest,
     auth: authReducer,
+    orders,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

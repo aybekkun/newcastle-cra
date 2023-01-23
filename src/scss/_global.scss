@@ -58,6 +58,16 @@ a {
   &:target {
     transform: scale(0.9);
   }
+  &:disabled {
+    cursor: initial;
+    opacity: 0.9;
+    &:active {
+      transform: scale(1);
+    }
+    &:target {
+      transform: scale(1);
+    }
+  }
 }
 
 .title {

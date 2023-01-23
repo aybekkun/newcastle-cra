@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "../components/AdminComponents/Sidebar";
 import "../scss/adminStyles/admin.scss";
 const AdminLayout = () => {
+  
   return (
     <div className="admin">
       <Sidebar />

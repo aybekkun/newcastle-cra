@@ -9,8 +9,11 @@ const CourseInfo = () => {
   return (
     <div className="course__info">
       <h3>Kurslardan nimani kutish kerak</h3>
+      
       <div className="course__info-box">
+        
         <div className="course__info-item">
+          
           <h4>
             <img src={c1Icon} alt="" />
             <span>O'z tezligingiz bilan o'rganing</span>

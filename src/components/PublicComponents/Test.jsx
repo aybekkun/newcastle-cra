@@ -83,10 +83,10 @@ const Test = ({ blocks, isInner = false }) => {
               ));
             } else if (block.type === "paragraph") {
               return (
-                <ParagraphOutput key={block.id} style={{ margin: "0px", marginBottom: "10px" }} data={block.data} />
+                <ParagraphOutput key={blockIndex} style={{ margin: "0px", marginBottom: "10px" }} data={block.data} />
               );
             } else {
-              return <ShowEditer key={block.id} blocks={[block]} />;
+              return <ShowEditer key={blockIndex} blocks={[block]} />;
             }
           })
         ) : !checked ? (
@@ -122,7 +122,7 @@ const Test = ({ blocks, isInner = false }) => {
                 ));
             } else if (block.type === "paragraph") {
               return (
-                <ParagraphOutput key={block.id} style={{ margin: "0px", marginBottom: "10px" }} data={block.data} />
+                <ParagraphOutput key={blockIndex} style={{ margin: "0px", marginBottom: "10px" }} data={block.data} />
               );
             } else {
               return <React.Fragment key={blockIndex}></React.Fragment>;

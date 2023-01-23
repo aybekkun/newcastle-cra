@@ -41,6 +41,8 @@ const PopularSection = () => {
                 description={item.description}
                 image={item.image}
                 lessons={item.lessons}
+                count={item.rating_count}
+                mark={item.rating_mark_overall}
               />
             ))}
           </div>

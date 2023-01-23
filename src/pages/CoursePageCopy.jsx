@@ -7,6 +7,7 @@ const CoursePage = () => {
   return (
     <>
       <div className="container">
+
         <div className="wrapper">
           <div className="wrapper__inner">
             <div className="wrapper__title-box">

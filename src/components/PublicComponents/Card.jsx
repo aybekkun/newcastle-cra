@@ -6,7 +6,18 @@ import listIcon from "../../assets/icons/list.svg";
 import starIcon from "../../assets/icons/star.svg";
 import userIcon from "../../assets/icons/user.svg";
 
-const Card = ({ id, secondId, title, description, image, price, lessons, onDelete = () => undefined }) => {
+const Card = ({
+  id,
+  secondId,
+  title,
+  description,
+  image,
+  price,
+  lessons,
+  onDelete = () => undefined,
+  mark = 0,
+  count = 0,
+}) => {
   const location = useLocation();
   const pathname = location.pathname.split("/")[1];
   const navigate = useNavigate();
@@ -37,11 +48,11 @@ const Card = ({ id, secondId, title, description, image, price, lessons, onDelet
               <p className="card__price">{price} uzs</p>
               <div className="card__rating">
                 <img src={starIcon} alt="Rate" />
-                <span>1,235</span>
+                <span>{mark}</span>
               </div>
               <div className="card__user">
                 <img src={userIcon} alt="User" />
-                <span>1,235</span>
+                <span>{count}</span>
               </div>
             </div>
           </div>

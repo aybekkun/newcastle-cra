@@ -1,10 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
+import Order from "../Order";
 import Accordion from "../Accordion";
 import AccordionItem from "../AccordionItem";
 const Aside = ({ id }) => {
   const { course } = useSelector((state) => state.courses);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <aside className="aside">
@@ -17,7 +18,6 @@ const Aside = ({ id }) => {
                 {sub.sub_lesson_2s.length > 0 ? (
                   sub.sub_lesson_2s.map((subItem) => (
                     <AccordionItem
-                 
                       available={item.available}
                       link={`${id}/${subItem.id}`}
                       title={subItem.name}
@@ -31,6 +31,7 @@ const Aside = ({ id }) => {
             ))}
           </Accordion>
         ))}
+      <Order id={id} />
     </aside>
   );
 };

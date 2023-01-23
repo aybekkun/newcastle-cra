@@ -50,6 +50,8 @@ const GeneralPage = () => {
             description={item.description}
             lessons={item.lessons}
             onDelete={onDeleteCourse}
+            count={item.rating_count}
+            mark={item.rating_mark_overall}
           />
         ))}
       </div>
