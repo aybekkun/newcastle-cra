@@ -1,11 +1,10 @@
-import { Button, Input, Pagination, Select, Space, Table } from "antd";
-import dayjs from "dayjs";
+import { Button, Pagination, Table } from "antd";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShowStatus from "../../components/AdminComponents/ShowStatus";
-import React from "react";
 import { fetchStudents } from "../../redux/students/asyncActions";
 import { setStudentsPage } from "../../redux/students/slice";
-const { Search } = Input;
+
 
 const columns = [
   {
@@ -89,7 +88,7 @@ const StudentsPage = () => {
   );
 };
 const UserAction = ({ userId, courseId, status, username }) => {
-  const dispacth = useDispatch();
+
   const [isSending, setIsSending] = React.useState(false);
 
   const onClickConfirm = async () => {

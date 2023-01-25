@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, Input, Pagination, Select, Space, Table } from "antd";
+import { Button, DatePicker, Input, Pagination, Select, Space, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import ShowStatus from "../../components/AdminComponents/ShowStatus";
 import { fetchOrders } from "../../redux/orders/asyncActions";
@@ -67,12 +67,30 @@ const BillingPage = () => {
   const dispatch = useDispatch();
   const { orders, total, isloading, currentPage, count } = useSelector((state) => state.orders);
   const [filterVal, setFilterVal] = React.useState("");
+  const [fromDate, setFromDate] = React.useState(null);
+  const [toDate, setToDate] = React.useState(null);
   React.useEffect(() => {
     (async function () {
-      await dispatch(fetchOrders({ page: currentPage, limit: 10, status: filterVal }));
+      await dispatch(
+        fetchOrders({
+          page: currentPage,
+          limit: 10,
+          status: filterVal,
+          from: fromDate?.format("YYYY-MM-DD"),
+          to: toDate?.format("YYYY-MM-DD"),
+        })
+      );
     })();
-  }, [currentPage, filterVal, count]);
+  }, [currentPage, filterVal, count, fromDate, toDate]);
 
+  const onChangeFromDate = (value) => {
+    setFromDate(value);
+    dispatch(setOrdersPage(1));
+  };
+  const onChangeToDate = (value) => {
+    setToDate(value);
+    dispatch(setOrdersPage(1));
+  };
   const handleChange = async (value) => {
     setFilterVal(value);
     //   await dispatch(fetchOrders({ page: 1, limit: 10, status: value }));
@@ -100,6 +118,8 @@ const BillingPage = () => {
               },
             ]}
           />
+          <DatePicker value={fromDate} format="DD-MM-YYYY" onChange={onChangeFromDate} placeholder="from" />
+          <DatePicker value={toDate} format="DD-MM-YYYY" onChange={onChangeToDate} placeholder="to" />
         </Space>
         <div className="billing__box">
           <div className="billing__box-item">
