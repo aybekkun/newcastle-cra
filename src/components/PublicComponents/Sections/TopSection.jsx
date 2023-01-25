@@ -9,11 +9,8 @@ const TopSection = () => {
         <div className="top__inner">
           <div className="top__about">
             <p className="top__subtitle">ADVANCE YOUR CAREER</p>
-            <h1 className="top__title">Unlimited Online Learning</h1>
-            <p className="top__desc">
-              Felis purus sit donec magna egestas id consequat neque tortor. Fringilla aliquam diam erat eget. Amet
-              magna eget enim et.
-            </p>
+            <h1 className="top__title">100% Online Ingliz tilini o'rganish platformasi</h1>
+            <p className="top__desc">O'qituvchisiz ham Ingliz tilini tez va samarali o'rganing</p>
             <a href="#" className="btn top__btn">
               Get started
             </a>

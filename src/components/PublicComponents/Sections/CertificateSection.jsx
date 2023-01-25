@@ -13,16 +13,14 @@ const CertificateSection = () => {
           </div>
           <div className="certificate__desc-box">
             <h3 className="certificate__subtitle subtitle">Upgrade your skills</h3>
-            <h2 className="certificate__title title">Professional Certificates</h2>
+            <h2 className="certificate__title title">Kitobdan qanday foydalaniladi?</h2>
             <p className="certificate__desc text">
-              Tincidunt sem sed tellus ullamcorper nulla phasellus eget sem. Ornare sagittis vel ornare elit dignissim
-              eget ullamcorper risus.
+              Birinchi navbatda unitga kerak bo'ladigan yangi so'zlar ( wordlist) ni yodlashingiz kerak.
             </p>
             <p className="certificate__desc text">
-              Integer in nunc sodales sed. Lobortis mi commodo turpis quisque. Integer nulla a velit sodales at.
-              Faucibus suspendisse nullam nisl nullam mauris. Eget tellus ac nulla interdum sed. Cras facilisis etiam
-              facilisis morbi diam. Amet dolor amet dolor etiam turpis vitae suspendisse pretium tincidunt. Nisl elit
-              ultrices volutpat aliquet laoreet justo. Rutrum sit vitae ac vulputate euismod magna libero.
+              Ikkinchi navbatda esa shu unitni gramatikasini yaxshilab o'rganishingiz kerak. Keyin esa bu ikkisidan
+              foydalanib siz ingliz tilida matnlar tarjima qilasiz, audiolar eshitasiz, shu so'zlar ishtirokida og'zaki
+              va yozma gaplar tuzasiz. Har xil mavzularda kichik va katta insholar yozishni o'rganasiz!{" "}
             </p>
             <a href="#" className="certificate__btn btn">
               Get started

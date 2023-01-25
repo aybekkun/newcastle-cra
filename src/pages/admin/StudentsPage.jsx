@@ -1,10 +1,9 @@
-import { Button, Pagination, Table } from "antd";
+import { Button, DatePicker, Pagination, Space, Table } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShowStatus from "../../components/AdminComponents/ShowStatus";
 import { fetchStudents } from "../../redux/students/asyncActions";
 import { setStudentsPage } from "../../redux/students/slice";
-
 
 const columns = [
   {
@@ -63,19 +62,42 @@ const columns = [
 const StudentsPage = () => {
   const dispatch = useDispatch();
   const { students, total, isloading, currentPage } = useSelector((state) => state.students);
+  const [fromDate, setFromDate] = React.useState(null);
+  const [toDate, setToDate] = React.useState(null);
   React.useEffect(() => {
     (async function () {
-      await dispatch(fetchStudents({ page: currentPage, limit: 10 }));
+      await dispatch(
+        fetchStudents({
+          page: currentPage,
+          limit: 10,
+          from: fromDate?.format("YYYY-MM-DD"),
+          to: toDate?.format("YYYY-MM-DD"),
+        })
+      );
     })();
-  }, [currentPage]);
+  }, [currentPage, fromDate, toDate, dispatch]);
+  const onChangeFromDate = (value) => {
+    dispatch(setStudentsPage(1));
+    setFromDate(value);
+  };
+  const onChangeToDate = (value) => {
+    dispatch(setStudentsPage(1));
+    setToDate(value);
+  };
+
   return (
     <div className="studentsPage">
       <div className="studentsPage__box">
-        <div className="studentsPage__box-item">
-          <span className="studentsPage__box-num">{total}</span>
-          <span className="studentsPage__box-name">Stundets</span>
-        </div>
+        <Space>
+          <DatePicker value={fromDate} format="DD-MM-YYYY" onChange={onChangeFromDate} placeholder="from" />
+          <DatePicker value={toDate} format="DD-MM-YYYY" onChange={onChangeToDate} placeholder="to" />
+          <div className="studentsPage__box-item">
+            <span className="studentsPage__box-num">{total}</span>
+            <span className="studentsPage__box-name">Stundets</span>
+          </div>
+        </Space>
       </div>
+
       <Table
         style={{ matginBottom: "20px" }}
         loading={isloading}
@@ -88,7 +110,6 @@ const StudentsPage = () => {
   );
 };
 const UserAction = ({ userId, courseId, status, username }) => {
-
   const [isSending, setIsSending] = React.useState(false);
 
   const onClickConfirm = async () => {

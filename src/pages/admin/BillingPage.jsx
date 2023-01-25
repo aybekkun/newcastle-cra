@@ -7,7 +7,7 @@ import { fetchOrders } from "../../redux/orders/asyncActions";
 import { setCount, setOrdersPage } from "../../redux/orders/slice";
 import dayjs from "dayjs";
 import { createStudent } from "../../redux/students/asyncActions";
-const { Search } = Input;
+
 
 const columns = [
   {
@@ -84,14 +84,15 @@ const BillingPage = () => {
   }, [currentPage, filterVal, count, fromDate, toDate]);
 
   const onChangeFromDate = (value) => {
-    setFromDate(value);
     dispatch(setOrdersPage(1));
+    setFromDate(value);
   };
   const onChangeToDate = (value) => {
-    setToDate(value);
     dispatch(setOrdersPage(1));
+    setToDate(value);
   };
   const handleChange = async (value) => {
+    dispatch(setOrdersPage(1));
     setFilterVal(value);
     //   await dispatch(fetchOrders({ page: 1, limit: 10, status: value }));
   };
