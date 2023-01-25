@@ -62,7 +62,7 @@ const Sidebar = () => {
             </svg>
             Settings
           </NavLink>
-          <NavLink to="statistika" className={({ isActive }) => (isActive ? "active sidebar__link" : "sidebar__link")}>
+          <NavLink to="students" className={({ isActive }) => (isActive ? "active sidebar__link" : "sidebar__link")}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8.25 15C10.9424 15 13.125 12.8174 13.125 10.125C13.125 7.43261 10.9424 5.25 8.25 5.25C5.55761 5.25 3.375 7.43261 3.375 10.125C3.375 12.8174 5.55761 15 8.25 15Z"
@@ -93,7 +93,7 @@ const Sidebar = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            Statistika
+            Students
           </NavLink>
           <NavLink to="billing" className={({ isActive }) => (isActive ? "active sidebar__link" : "sidebar__link")}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

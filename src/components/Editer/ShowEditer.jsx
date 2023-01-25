@@ -98,7 +98,9 @@ const Quote = ({ block }) => {
       >
         Show
       </button>
-      {active && <p>{block.data.text ? parse(block.data.text) : "null"}</p>}
+      {active && (
+        <p style={{ marginBottom: "20px", marginTop: "10px" }}>{block.data.text ? parse(block.data.text) : "null"}</p>
+      )}
     </div>
   );
 };

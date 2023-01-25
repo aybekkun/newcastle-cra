@@ -44,8 +44,9 @@ const Test = ({ blocks, isInner = false }) => {
         await dispatch(
           createCheckTest({ lesson_id: lesson.id, user_id: user.id, number: test.length, overall: result })
         );
+        window.scrollTo(0, 0);
       }
-      window.scrollTo(0, 0);
+
       setCount(result);
       setChecked(true);
     } else {
@@ -53,7 +54,9 @@ const Test = ({ blocks, isInner = false }) => {
     }
   };
   const onSumbitAgain = () => {
-    window.scrollTo(0, 0);
+    if (!isInner) {
+      window.scrollTo(0, 0);
+    }
     setChecked(false);
   };
   return (

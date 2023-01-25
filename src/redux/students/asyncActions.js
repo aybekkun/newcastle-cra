@@ -1,18 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host } from "../../axios";
 
-export const fetchOrders = createAsyncThunk("orders/fetchOrders", async (params, thunkAPI) => {
+export const fetchStudents = createAsyncThunk("students/fetchStudents", async (params, thunkAPI) => {
   try {
-    const response = await $host.get(`orders`, { params: params });
+    const response = await $host.get(`students`, { params: params });
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue("Не удалось создать lessons");
   }
 });
 
-export const createOrder = createAsyncThunk("orders/createOrder", async (params, thunkAPI) => {
+export const createStudent = createAsyncThunk("students/createOrder", async (params, thunkAPI) => {
   try {
-    const response = await $host.post(`orders`, params);
+    const response = await $host.post(`students`, params);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue("Не удалось создать lessons");

@@ -1,130 +1,144 @@
 import React from "react";
 
-import { Input, Pagination, Select, Space, Table } from "antd";
-
+import { Button, Input, Pagination, Select, Space, Table } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import ShowStatus from "../../components/AdminComponents/ShowStatus";
+import { fetchOrders } from "../../redux/orders/asyncActions";
+import { setCount, setOrdersPage } from "../../redux/orders/slice";
+import dayjs from "dayjs";
+import { createStudent } from "../../redux/students/asyncActions";
 const { Search } = Input;
 
 const columns = [
   {
     title: "User",
-    dataIndex: "name",
+    dataIndex: "user_name",
+    key: "user_name",
   },
   {
     title: "Status",
     dataIndex: "status",
+    key: "status",
+    render: (row, _) => <ShowStatus status={row} />,
   },
   {
     title: "Phone number",
-    dataIndex: "phone",
+    dataIndex: "user_phone",
+    key: "user_phone",
+    render: (row, _) => (
+      <a href={`tel:${row}`} target="_blank" rel="noreferrer">
+        {row}
+      </a>
+    ),
   },
   {
-    title: "Position",
-    dataIndex: "position",
+    title: "Course",
+    dataIndex: "course_title",
+    key: "course_title",
   },
   {
-    title: "Department",
-    dataIndex: "department",
+    title: "Price",
+    dataIndex: "course_price",
+    key: "course_price",
+    render: (row, _) => <>{row.toLocaleString()}</>,
   },
   {
-    title: "Activity",
-    dataIndex: "activity",
+    title: "Ordered",
+    dataIndex: "created_at",
+    key: "created_at",
+    render: (row, _) => <>{dayjs(row).format("DD-MM-YYYY HH:mm")}</>,
+  },
+  {
+    title: "Actions",
+    // dataIndex: "created_at",
+    key: "created_at",
+    render: (row, record) => (
+      <UserAction
+        courseId={record.course_id}
+        userId={record.user_id}
+        username={record.user_name}
+        status={record.status}
+      />
+    ),
   },
 ];
 
-const data = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    status: "active",
-    phone: `9989 ${i}`,
-    position: "designer",
-    department: "pride 1",
-    activity: "2 days ago",
-  });
-}
-
 const BillingPage = () => {
-  const onSearch = (value) => console.log(value);
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
+  const dispatch = useDispatch();
+  const { orders, total, isloading, currentPage, count } = useSelector((state) => state.orders);
+  const [filterVal, setFilterVal] = React.useState("");
+  React.useEffect(() => {
+    (async function () {
+      await dispatch(fetchOrders({ page: currentPage, limit: 10, status: filterVal }));
+    })();
+  }, [currentPage, filterVal, count]);
+
+  const handleChange = async (value) => {
+    setFilterVal(value);
+    //   await dispatch(fetchOrders({ page: 1, limit: 10, status: value }));
   };
   return (
-    <div className="statistika">
-      <div className="statistika__box">
-        <div className="statistika__box-item">
-          <span className="statistika__box-num">12</span>
-          <span className="statistika__box-name">O’quvchilar</span>
-        </div>
-        <div className="statistika__box-item">
-          <span className="statistika__box-num">12</span>
-          <span className="statistika__box-name">Bo'limlar</span>
-        </div>
-        <div className="statistika__box-item">
-          <span className="statistika__box-num">0</span>
-          <span className="statistika__box-name">Mehmonlar</span>
-        </div>
-      </div>
-      <div className="statistika__search-box">
+    <div className="billing">
+      <div className="billing__search-box">
         <Space>
-          <Search
-            placeholder="input search text"
-            style={{ width: 700 }}
-            allowClear
-            enterButton="Qidirish"
-            size="large"
-            onSearch={onSearch}
-          />
           <Select
-            defaultValue="lucy"
+            value={filterVal}
             style={{ width: 120 }}
             onChange={handleChange}
             options={[
               {
-                value: "All",
+                value: "",
                 label: "All",
               },
               {
-                value: "lucy",
-                label: "Lucy",
+                value: "true",
+                label: "BOUGHT",
               },
               {
-                value: "disabled",
-                label: "Disabled",
-              },
-              {
-                value: "Yiminghe",
-                label: "yiminghe",
-              },
-            ]}
-          />
-          <Select
-            defaultValue="lucy"
-            style={{ width: 120 }}
-            onChange={handleChange}
-            options={[
-              {
-                value: "All",
-                label: "Bo’limlar",
-              },
-              {
-                value: "lucy",
-                label: "Lucy",
-              },
-              {
-                value: "disabled",
-                label: "Disabled",
-              },
-              {
-                value: "Yiminghe",
-                label: "yiminghe",
+                value: "false",
+                label: "WAIT",
               },
             ]}
           />
         </Space>
+        <div className="billing__box">
+          <div className="billing__box-item">
+            <span className="billing__box-num">{total}</span>
+            <span className="billing__box-name">
+              {filterVal === "true" ? "Bought" : filterVal === "false" ? "Ordered" : "Orders"}
+            </span>
+          </div>
+        </div>
       </div>
-      <Table columns={columns} dataSource={data}  pagination={false} />
-      <Pagination defaultCurrent={1} total={50} />
+      <Table
+        style={{ matginBottom: "20px" }}
+        loading={isloading}
+        columns={columns}
+        dataSource={orders}
+        pagination={false}
+      />
+      <Pagination defaultCurrent={1} pageSize={10} onChange={(page) => dispatch(setOrdersPage(page))} total={total} />
+    </div>
+  );
+};
+
+const UserAction = ({ userId, courseId, status, username }) => {
+  const dispacth = useDispatch();
+  const [isSending, setIsSending] = React.useState(false);
+
+  const onClickConfirm = async () => {
+    if (window.confirm(`${username} Kursga  kirishga ruxsat berilsinmi?`)) {
+      setIsSending(true);
+      await dispacth(createStudent({ user_id: userId, course_id: courseId }));
+      setIsSending(false);
+      dispacth(setCount());
+    }
+  };
+  return (
+    <div>
+      <Button disabled={status} loading={isSending} onClick={onClickConfirm} size="small" type="primary">
+        {status ? "Confirmed" : "Confirm"}
+      </Button>
     </div>
   );
 };

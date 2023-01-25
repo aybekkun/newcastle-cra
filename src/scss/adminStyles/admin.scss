@@ -3,9 +3,10 @@
 
 /* pages */
 @import "pages/general";
-@import "pages/statistika";
+@import "pages/students";
 @import "pages/addcourse";
 @import "pages/lessonAdd";
+@import "pages/billing";
 .admin {
   display: grid;
   grid-template-columns: 2fr 10fr;

@@ -13,7 +13,7 @@ const BillingPage = lazy(() => import("../pages/admin/BillingPage"));
 const GeneralPage = lazy(() => import("../pages/admin/GeneralPage"));
 const LessonAddPage = lazy(() => import("../pages/admin/LessonAddPage"));
 const SettingsPage = lazy(() => import("../pages/admin/SettingsPage"));
-const StatistikaPage = lazy(() => import("../pages/admin/StatistikaPage"));
+const StudentsPage = lazy(() => import("../pages/admin/StudentsPage"));
 const CoursePage = lazy(() => import("../pages/CoursePage"));
 const HomePage = lazy(() => import("../pages/HomePage"));
 const NotFound = lazy(() => import("../pages/NotFound"));
@@ -113,10 +113,10 @@ const Routing = () => {
             }
           />
           <Route
-            path="statistika"
+            path="students"
             element={
               <Suspense fallback={<Spinner />}>
-                <StatistikaPage />
+                <StudentsPage />
               </Suspense>
             }
           />
