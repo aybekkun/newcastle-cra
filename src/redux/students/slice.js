@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createStudent, fetchStudents } from "./asyncActions";
-const initialState = { students: [], total: 1, currentPage: 1, isSending: false, isLoading: false, error: true };
+const initialState = {
+  students: [],
+  total: 1,
+  currentPage: 1,
+  isSending: false,
+  isLoading: false,
+  error: true,
+  count: 0,
+};
 
 export const studentsSlice = createSlice({
   name: "students",
@@ -8,6 +16,9 @@ export const studentsSlice = createSlice({
   reducers: {
     setStudentsPage(state, action) {
       state.currentPage = action.payload;
+    },
+    setStudentsCount(state) {
+      state.count++;
     },
   },
   extraReducers: (builder) => {
@@ -37,6 +48,6 @@ export const studentsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setStudentsPage } = studentsSlice.actions;
+export const { setStudentsPage,setStudentsCount } = studentsSlice.actions;
 
 export default studentsSlice.reducer;

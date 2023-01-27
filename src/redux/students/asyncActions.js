@@ -18,3 +18,12 @@ export const createStudent = createAsyncThunk("students/createOrder", async (par
     return thunkAPI.rejectWithValue("Не удалось создать lessons");
   }
 });
+
+export const deleteStudent = createAsyncThunk("students/deleteStudent", async (params, thunkAPI) => {
+  try {
+    const response = await $host.delete(`students/${params.id}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue("Не удалось создать lessons");
+  }
+});

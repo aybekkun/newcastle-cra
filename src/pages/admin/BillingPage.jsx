@@ -1,14 +1,13 @@
 import React from "react";
 
-import { Button, DatePicker, Input, Pagination, Select, Space, Table } from "antd";
+import { Button, DatePicker, Pagination, Select, Space, Table } from "antd";
+import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import ShowStatus from "../../components/AdminComponents/ShowStatus";
 import { fetchOrders } from "../../redux/orders/asyncActions";
 import { setCount, setOrdersPage } from "../../redux/orders/slice";
-import dayjs from "dayjs";
 import { createStudent } from "../../redux/students/asyncActions";
-
-
+import { deleteOrder } from "../../redux/orders/asyncActions";
 const columns = [
   {
     title: "User",
@@ -54,6 +53,7 @@ const columns = [
     key: "created_at",
     render: (row, record) => (
       <UserAction
+        orderId={record.id}
         courseId={record.course_id}
         userId={record.user_id}
         username={record.user_name}
@@ -65,7 +65,7 @@ const columns = [
 
 const BillingPage = () => {
   const dispatch = useDispatch();
-  const { orders, total, isloading, currentPage, count } = useSelector((state) => state.orders);
+  const { orders, total, isLoading, currentPage, count } = useSelector((state) => state.orders);
   const [filterVal, setFilterVal] = React.useState("");
   const [fromDate, setFromDate] = React.useState(null);
   const [toDate, setToDate] = React.useState(null);
@@ -81,7 +81,7 @@ const BillingPage = () => {
         })
       );
     })();
-  }, [currentPage, filterVal, count, fromDate, toDate]);
+  }, [currentPage, filterVal, count, fromDate, toDate, dispatch]);
 
   const onChangeFromDate = (value) => {
     dispatch(setOrdersPage(1));
@@ -133,7 +133,7 @@ const BillingPage = () => {
       </div>
       <Table
         style={{ matginBottom: "20px" }}
-        loading={isloading}
+        loading={isLoading}
         columns={columns}
         dataSource={orders}
         pagination={false}
@@ -143,7 +143,7 @@ const BillingPage = () => {
   );
 };
 
-const UserAction = ({ userId, courseId, status, username }) => {
+const UserAction = ({ orderId, userId, courseId, status, username }) => {
   const dispacth = useDispatch();
   const [isSending, setIsSending] = React.useState(false);
 
@@ -155,12 +155,25 @@ const UserAction = ({ userId, courseId, status, username }) => {
       dispacth(setCount());
     }
   };
+  const onClickCancel = async () => {
+    if (window.confirm(`${username} Buyirtma bekor qilinsinmi?`)) {
+      setIsSending(true);
+      await dispacth(deleteOrder({ id: orderId }));
+      setIsSending(false);
+      dispacth(setCount());
+    }
+  };
   return (
-    <div>
+    <Space>
       <Button disabled={status} loading={isSending} onClick={onClickConfirm} size="small" type="primary">
         {status ? "Confirmed" : "Confirm"}
       </Button>
-    </div>
+      {!status && (
+        <Button disabled={status} loading={isSending} onClick={onClickCancel} size="small" danger>
+          Cancel order
+        </Button>
+      )}
+    </Space>
   );
 };
 

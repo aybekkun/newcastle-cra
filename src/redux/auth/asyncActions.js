@@ -16,7 +16,7 @@ export const userReg = createAsyncThunk("auth/userReg", async (params, thunkAPI)
     const response = await $authHost.post(`auth/register`, params);
     return response.data;
   } catch (error) {
-    alert("Неверный пароль или логии");
+    alert("Такой пользователь существует");
     return thunkAPI.rejectWithValue("Не удалось удалить курсов");
   }
 });

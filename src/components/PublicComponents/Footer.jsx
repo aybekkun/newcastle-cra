@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 const Footer = () => {
+  const { data } = useSelector((state) => state.courses);
   return (
     <footer className="footer">
       <div className="container">
@@ -106,31 +108,21 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <ul className="footer__list">
-              <li className="footer__list-title">
-                <h4>Courses</h4>
-              </li>
-              <li className="footer__list-item">
-                <a href="#" className="footer__list-link">
-                  Course 1
-                </a>
-              </li>
-              <li className="footer__list-item">
-                <a href="#" className="footer__list-link">
-                  Course 1
-                </a>
-              </li>
-              <li className="footer__list-item">
-                <a href="#" className="footer__list-link">
-                  Course 1
-                </a>
-              </li>
-              <li className="footer__list-item">
-                <a href="#" className="footer__list-link">
-                  Course 1
-                </a>
-              </li>
-            </ul>
+            {data.length > 0 && (
+              <ul className="footer__list">
+                <li className="footer__list-title">
+                  <h4>Courses</h4>
+                </li>
+                {data.map((course, i) => (
+                  <li key={course.id} className="footer__list-item">
+                    <Link to={`/course/${course.id}/${course.sub_lesson_2s_id ? course.sub_lesson_2s_id : 0}`} className="footer__list-link">
+                      {course.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <ul className="footer__list">
               <li className="footer__list-title">
                 <h4>Pages</h4>

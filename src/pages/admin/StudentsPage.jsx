@@ -2,8 +2,8 @@ import { Button, DatePicker, Pagination, Space, Table } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShowStatus from "../../components/AdminComponents/ShowStatus";
-import { fetchStudents } from "../../redux/students/asyncActions";
-import { setStudentsPage } from "../../redux/students/slice";
+import { deleteStudent, fetchStudents } from "../../redux/students/asyncActions";
+import { setStudentsCount, setStudentsPage } from "../../redux/students/slice";
 
 const columns = [
   {
@@ -48,20 +48,13 @@ const columns = [
     title: "Actions",
     // dataIndex: "created_at",
     key: "created_at",
-    render: (row, record) => (
-      <UserAction
-        courseId={record.course_id}
-        userId={record.user_id}
-        username={record.user_name}
-        status={record.status}
-      />
-    ),
+    render: (row, record) => <UserAction studentId={record.id} username={record.user_name} />,
   },
 ];
 
 const StudentsPage = () => {
   const dispatch = useDispatch();
-  const { students, total, isloading, currentPage } = useSelector((state) => state.students);
+  const { students, total, isLoading, currentPage, count } = useSelector((state) => state.students);
   const [fromDate, setFromDate] = React.useState(null);
   const [toDate, setToDate] = React.useState(null);
   React.useEffect(() => {
@@ -75,7 +68,7 @@ const StudentsPage = () => {
         })
       );
     })();
-  }, [currentPage, fromDate, toDate, dispatch]);
+  }, [currentPage, fromDate, toDate, dispatch, count]);
   const onChangeFromDate = (value) => {
     dispatch(setStudentsPage(1));
     setFromDate(value);
@@ -100,7 +93,7 @@ const StudentsPage = () => {
 
       <Table
         style={{ matginBottom: "20px" }}
-        loading={isloading}
+        loading={isLoading}
         columns={columns}
         dataSource={students}
         pagination={false}
@@ -109,17 +102,23 @@ const StudentsPage = () => {
     </div>
   );
 };
-const UserAction = ({ userId, courseId, status, username }) => {
+
+const UserAction = ({ studentId, username }) => {
+  const dispatch = useDispatch();
   const [isSending, setIsSending] = React.useState(false);
 
   const onClickConfirm = async () => {
-    if (window.confirm(`${username} Kursga  kirishga ruxsat berilsinmi?`)) {
+    if (window.confirm(`${username} Kurstan kursni bekor qilinsinmi?`)) {
+      setIsSending(true);
+      await dispatch(deleteStudent({ id: studentId }));
+      setIsSending(false);
+      dispatch(setStudentsCount());
     }
   };
   return (
     <div>
-      <Button disabled={status} loading={isSending} onClick={onClickConfirm} size="small" type="primary">
-        {status ? "Confirmed" : "Confirm"}
+      <Button loading={isSending} onClick={onClickConfirm} size="small" danger>
+        Delete from course
       </Button>
     </div>
   );
