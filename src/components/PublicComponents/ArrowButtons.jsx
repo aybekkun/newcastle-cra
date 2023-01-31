@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const ArrowButtons = () => {
   const { materials, course } = useSelector((state) => state.courses);
   const { id, courseId } = useParams();
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const navArray = course && course.sub_lesson_2s ? course.sub_lesson_2s.map((item) => item.id) : [0];
@@ -18,6 +19,9 @@ const ArrowButtons = () => {
     }
     //   setCount((prev) => prev + num);
   };
+  if (user.role === "guest" || user.role === "user") {
+    return <></>;
+  }
   return (
     <div className="arrow">
       <button onClick={() => onNavigate(-1)} disabled={isPrevDisabled} className="btn">{`< Prev`}</button>

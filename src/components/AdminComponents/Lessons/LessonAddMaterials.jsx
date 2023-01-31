@@ -18,7 +18,7 @@ const LessonAddMaterials = ({ id, handleChangeTab }) => {
   const [data, setData] = React.useState({});
   const onFinishSubSubLessonAdd = async () => {
     if (!subInput || !subSelectId || !data) {
-      alert("Введите все данные");
+      alert("Hamma mag`lumatni kiriting!!!");
     } else {
       console.log({ name: subInput, sub_lesson_id: subSelectId, data: data });
       await dispatch(createSubSubLesson({ name: subInput, sub_lesson_id: subSelectId, data: data }));

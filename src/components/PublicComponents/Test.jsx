@@ -78,8 +78,8 @@ const Test = ({ blocks, isInner = false }) => {
           blocks.map((block, blockIndex) => {
             if (block.type === "checklist") {
               return block.data.items.map((item, i) => (
-                <label key={i}>
-                  <input onClick={() => onClickTest(block.data.items, i, blockIndex)} type="radio" name={block.id} />
+                <label name={blockIndex} key={i}>
+                  <input onClick={() => onClickTest(block.data.items, i, blockIndex)} type="radio" name={blockIndex} />
                   <span className="checkmark"></span>
                   <span className="checkmark__text">{item.text}</span>
                 </label>

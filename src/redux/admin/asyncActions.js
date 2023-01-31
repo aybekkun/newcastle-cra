@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $host } from "../../axios";
-
 export const fetchAdmins = createAsyncThunk("admins/fetchAdmins", async (params, thunkAPI) => {
   try {
     const response = await $host.get(`admins`, { params: params });

@@ -45,3 +45,17 @@ export const deleteCourse = createAsyncThunk("courses/deleteCourse", async (para
     return thunkAPI.rejectWithValue("Не удалось удалить курсов");
   }
 });
+
+export const updateCourse = createAsyncThunk("courses/updateCourse", async (params, thunkAPI) => {
+  const { id, fd } = params;
+  try {
+    const response = await $host.post(`courses/${id}`, fd, {
+      headers: {
+        "Content-type": "multipart/form-data",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue("Не удалось удалить курсов");
+  }
+});

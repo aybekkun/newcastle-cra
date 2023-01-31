@@ -7,7 +7,8 @@ import auth from "./auth/slice.js";
 import checkTest from "./checkTest/slice.js";
 import orders from "./orders/slice.js";
 import students from "./students/slice.js";
-import users from "./users/slice.js"
+import users from "./users/slice.js";
+import admins from "./admin/slice";
 const persistConfig = {
   key: "root",
   version: 1,
@@ -23,7 +24,8 @@ const store = configureStore({
     auth: authReducer,
     orders,
     students,
-    users
+    users,
+    admins
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

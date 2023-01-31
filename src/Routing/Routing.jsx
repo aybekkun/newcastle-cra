@@ -8,10 +8,12 @@ import AdminLayout from "../layouts/AdminLayout";
 
 const Course = lazy(() => import("../components/PublicComponents/Course"));
 const AddCoursePage = lazy(() => import("../pages/admin/AddCoursePage"));
+const EditCoursePage = lazy(() => import("../pages/admin/EditCoursePage"));
 const AboutPage = lazy(() => import("../pages/AboutPage"));
 const BillingPage = lazy(() => import("../pages/admin/BillingPage"));
 const GeneralPage = lazy(() => import("../pages/admin/GeneralPage"));
 const LessonAddPage = lazy(() => import("../pages/admin/LessonAddPage"));
+const LessonEditMaterials = lazy(() => import("../components/AdminComponents/Lessons/LessonEditMaterials"));
 const SettingsPage = lazy(() => import("../pages/admin/SettingsPage"));
 const StudentsPage = lazy(() => import("../pages/admin/StudentsPage"));
 const CoursePage = lazy(() => import("../pages/CoursePage"));
@@ -20,7 +22,7 @@ const NotFound = lazy(() => import("../pages/NotFound"));
 const PopularPage = lazy(() => import("../pages/PopularPage"));
 const SignIn = lazy(() => import("../pages/SignIn"));
 const SignUp = lazy(() => import("../pages/SignUp"));
-
+const AdminsPage = lazy(() => import("../pages/admin/AdminsPage"));
 const Routing = () => {
   return (
     <>
@@ -121,6 +123,14 @@ const Routing = () => {
             }
           />
           <Route
+            path="admins"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <AdminsPage />
+              </Suspense>
+            }
+          />
+          <Route
             path="billing"
             element={
               <Suspense fallback={<Spinner />}>
@@ -133,6 +143,14 @@ const Routing = () => {
             element={
               <Suspense fallback={<Spinner />}>
                 <AddCoursePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="edit/:id"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <EditCoursePage />
               </Suspense>
             }
           />
@@ -153,6 +171,14 @@ const Routing = () => {
               }
             />
           </Route>
+          <Route
+            path="editer/:id"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <LessonEditMaterials />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="*" element={<NotFound />} />

@@ -15,7 +15,7 @@ import YoutubeEmbed from "editorjs-youtube-embed";
 import Audio from "audio-editor-js";
 import React from "react";
 import { $host } from "../../axios";
-const Editer = ({ blocks = [], handleSaveData }) => {
+const Edit = ({ blocks = [], handleSaveData }) => {
   React.useEffect(() => {
     const editor = new EditorJS({
       holder: "editer",
@@ -63,6 +63,11 @@ const Editer = ({ blocks = [], handleSaveData }) => {
           },
         },
       },
+      data: {
+        time: new Date(),
+        blocks: [...blocks],
+        version: "2.8.1",
+      },
       async onChange() {
         const { blocks } = await editor.save();
         handleSaveData(blocks);
@@ -85,4 +90,4 @@ const Editer = ({ blocks = [], handleSaveData }) => {
   );
 };
 
-export default Editer;
+export default Edit;

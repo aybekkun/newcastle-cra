@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {  fetchAdmins } from "./asyncActions";
+import { fetchAdmins } from "./asyncActions";
 
 const initialState = {
   admins: [],
@@ -9,9 +9,10 @@ const initialState = {
   isLoading: false,
   error: false,
   count: 0,
+
 };
 
-export const usersSlice = createSlice({
+export const adminsSlice = createSlice({
   name: "admins",
   initialState,
   reducers: {
@@ -26,7 +27,6 @@ export const usersSlice = createSlice({
     builder.addCase(fetchAdmins.fulfilled, (state, action) => {
       state.isLoading = false;
       state.admins = action.payload.data;
-      state.total = action.payload.total;
     });
     builder.addCase(fetchAdmins.pending, (state, action) => {
       state.isLoading = true;
@@ -34,12 +34,11 @@ export const usersSlice = createSlice({
     builder.addCase(fetchAdmins.rejected, (state, action) => {
       state.isLoading = false;
       state.admins = [];
-      state.total = 0;
     });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setAdminsPage ,setAdminsCount} = usersSlice.actions;
+export const { setAdminsPage, setAdminsCount } = adminsSlice.actions;
 
-export default usersSlice.reducer;
+export default adminsSlice.reducer;

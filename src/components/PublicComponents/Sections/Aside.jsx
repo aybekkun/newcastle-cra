@@ -6,31 +6,55 @@ import AccordionItem from "../AccordionItem";
 const Aside = ({ id }) => {
   const { course, isLoading } = useSelector((state) => state.courses);
   const { user } = useSelector((state) => state.auth);
-
+  console.log(user.role);
   return (
     <aside className="aside">
       <h3 className="aside__title">Materials</h3>
-      {course.lessons &&
-        course.lessons.map((item) => (
-          <Accordion key={item.id} id={item.id} title={item.name}>
-            {item.sub_lessons.map((sub) => (
-              <Accordion id={sub.id} title={sub.name} key={sub.id}>
-                {sub.sub_lesson_2s.length > 0 ? (
-                  sub.sub_lesson_2s.map((subItem) => (
-                    <AccordionItem
-                      available={item.available}
-                      link={`${id}/${subItem.id}`}
-                      title={subItem.name}
-                      key={subItem.id}
-                    />
-                  ))
-                ) : (
-                  <AccordionItem title="No courses" />
-                )}
+      {user.role === "guest" ? (
+        <>
+          {course.lessons &&
+            course.lessons.map((item) => (
+              <Accordion key={item.id} title={item.name}>
+                {item.sub_lessons.map((sub) => (
+                  <Accordion title={sub.name} key={sub.id}>
+                    {sub.sub_lesson_2s.length > 0 ? (
+                      sub.sub_lesson_2s.map((subItem) => (
+                        <AccordionItem available={false} title={subItem.name} key={subItem.id} />
+                      ))
+                    ) : (
+                      <AccordionItem title="No courses" />
+                    )}
+                  </Accordion>
+                ))}
               </Accordion>
             ))}
-          </Accordion>
-        ))}
+        </>
+      ) : (
+        <>
+          {course.lessons &&
+            course.lessons.map((item) => (
+              <Accordion key={item.id} id={item.id} title={item.name}>
+                {item.sub_lessons.map((sub) => (
+                  <Accordion id={sub.id} title={sub.name} key={sub.id}>
+                    {sub.sub_lesson_2s.length > 0 ? (
+                      sub.sub_lesson_2s.map((subItem) => (
+                        <AccordionItem
+                          available={item.available}
+                          link={`${id}/${subItem.id}`}
+                          title={subItem.name}
+                          key={subItem.id}
+                        />
+                      ))
+                    ) : (
+                      <AccordionItem title="No courses" />
+                    )}
+                  </Accordion>
+                ))}
+              </Accordion>
+            ))}
+        </>
+      )}
+
       {!isLoading && <Order id={id} />}
     </aside>
   );

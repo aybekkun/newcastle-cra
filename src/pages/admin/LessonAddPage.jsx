@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import LessonAddForm from "../../components/AdminComponents/Lessons/LessonAddForm.jsx";
 import LessonAddMaterials from "../../components/AdminComponents/Lessons/LessonAddMaterials.jsx";
+import LessonEditMaterials from "../../components/AdminComponents/Lessons/LessonEditMaterials.jsx";
 import LessonsInfo from "../../components/AdminComponents/Lessons/LessonsInfo.jsx";
 import SubLessonAddForm from "../../components/AdminComponents/Lessons/SubLessonAddForm.jsx";
 import Spinner from "../../components/PublicComponents/Spinner.jsx";
@@ -15,7 +16,7 @@ export const configDate = {
 
 const LessonAddPage = () => {
   const dispatch = useDispatch();
-  const { course } = useSelector((state) => state.courses);
+  const { course, count } = useSelector((state) => state.courses);
   const { id } = useParams();
   const [tabContent, setTabContent] = React.useState(0);
   const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -23,7 +24,7 @@ const LessonAddPage = () => {
     (async function () {
       await dispatch(fetchCourse({ id: id }));
     })();
-  }, [id, dispatch]);
+  }, [id, dispatch, count]);
   const handleClose = () => {
     setOpenDrawer(false);
   };
@@ -47,6 +48,7 @@ const LessonAddPage = () => {
       </Space>
       {tabContent !== 3 && <LessonsInfo />}
       {tabContent === 3 && <LessonAddMaterials handleChangeTab={() => setTabContent(1)} id={id} />}
+
       <Drawer
         title={`Add`}
         placement={"right"}

@@ -2,19 +2,29 @@ import { Button, Form, Input, InputNumber } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../components/PublicComponents/Spinner";
-import { createCourse } from "../../redux/courses/asyncActions";
+import { fetchCourse, updateCourse } from "../../redux/courses/asyncActions";
 const configDate = {
   rules: [{ required: true, message: "Пожалуйста введите!" }],
 };
 
-const AddCoursePage = () => {
+const EditCoursePage = () => {
   const dispatch = useDispatch();
-  const { isSending } = useSelector((state) => state.courses);
-
+  const { isSending, course } = useSelector((state) => state.courses);
+  const { id } = useParams();
   const navigate = useNavigate();
   const [image, setImage] = React.useState(null);
+  const form = React.useRef(null);
+
+  React.useEffect(() => {
+    (async function () {
+      await dispatch(fetchCourse({ id: id }));
+    })();
+  }, []);
+  React.useEffect(() => {
+    form.current?.setFieldsValue({ title: course.title, description: course.description, price: course.price });
+  }, [course]);
 
   const onFinish = async (values) => {
     const fd = new FormData();
@@ -22,7 +32,8 @@ const AddCoursePage = () => {
     fd.append("description", values.description);
     fd.append("price", values.price);
     fd.append("image", image);
-    await dispatch(createCourse(fd));
+
+    await dispatch(updateCourse({ id: id, fd }));
     navigate("/admin/");
     // console.log("Success:", values);
   };
@@ -38,6 +49,7 @@ const AddCoursePage = () => {
       {isSending && <Spinner />}
       <Form
         name="form"
+        ref={form}
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
@@ -69,7 +81,6 @@ const AddCoursePage = () => {
         </Form.Item>
 
         <input
-          required
           onChange={handleFile}
           style={{ marginBottom: "20px" }}
           type="file"
@@ -86,4 +97,4 @@ const AddCoursePage = () => {
   );
 };
 
-export default AddCoursePage;
+export default EditCoursePage;

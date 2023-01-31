@@ -62,7 +62,7 @@ const Card = ({
             <Button onClick={() => onDelete(id)} danger type="primary" size="small">
               Delete
             </Button>
-            <Button type="primary" size="small">
+            <Button onClick={() => navigate(`edit/${id}`)} type="primary" size="small">
               Edit
             </Button>
             <Button onClick={() => navigate(`lesson/${id}`)} type="primary" size="small">

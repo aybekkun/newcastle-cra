@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchCourse } from "../../redux/courses/asyncActions";
-import { fetchMaterials } from "../../redux/lessons/asyncActions";
+import { fetchFree, fetchMaterials } from "../../redux/lessons/asyncActions";
 import ShowEditer from "../Editer/ShowEditer";
 import ArrowButtons from "./ArrowButtons";
 import Comments from "./Comments";
@@ -13,7 +13,7 @@ import Test from "./Test";
 
 const Course = () => {
   const { blocks, lesson, isMaterialLoading } = useSelector((state) => state.lessons);
-  const { isLoading } = useSelector((state) => state.courses);
+  const { isLoading, course } = useSelector((state) => state.courses);
   const dispatch = useDispatch();
 
   const { id, courseId } = useParams();
@@ -29,17 +29,20 @@ const Course = () => {
       cancelToken.cancel();
     };
   }, [id, dispatch]);
-
   React.useEffect(() => {
     const cancelToken = axios.CancelToken.source();
     (async function () {
       window.scrollTo(0, 80);
-      await dispatch(fetchMaterials({ id: courseId, cancelToken: cancelToken.token }));
+      if (course.sub_lesson_2s_id === Number(courseId)) {
+        await dispatch(fetchFree({ id: courseId, cancelToken: cancelToken.token }));
+      } else {
+        await dispatch(fetchMaterials({ id: courseId, cancelToken: cancelToken.token }));
+      }
     })();
     return () => {
       cancelToken.cancel();
     };
-  }, [courseId, dispatch]);
+  }, [course, courseId, dispatch]);
 
   return (
     <>
@@ -74,7 +77,7 @@ const Course = () => {
               </div>
             )}
           </div>
-          
+
           <Aside id={id} />
         </div>
       </div>

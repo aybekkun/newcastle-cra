@@ -7,6 +7,7 @@ const initialState = {
   isSending: false,
   isLoading: true,
   total: 0,
+  count: 0,
 };
 
 export const coursesSlice = createSlice({
@@ -15,6 +16,9 @@ export const coursesSlice = createSlice({
   reducers: {
     setCourse(state, action) {
       state.data.push(action.payload);
+    },
+    setCoursesCount(state) {
+      state.count++;
     },
   },
   extraReducers: (builder) => {
@@ -48,6 +52,6 @@ export const coursesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setCourse } = coursesSlice.actions;
+export const { setCourse,setCoursesCount } = coursesSlice.actions;
 
 export default coursesSlice.reducer;
