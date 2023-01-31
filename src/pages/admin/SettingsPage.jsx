@@ -2,7 +2,7 @@ import { Button, DatePicker, Input, Pagination, Select, Space, Table } from "ant
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Actions from "../../components/AdminComponents/Actions";
-import { createAdmin, deleteAdmin } from "../../redux/admin/asyncActions";
+import { createAdmin } from "../../redux/admin/asyncActions";
 import { fetchUsers } from "../../redux/users/asyncActions";
 import { setOpenDrawer, setUser, setUsersCount, setUsersPage } from "../../redux/users/slice";
 

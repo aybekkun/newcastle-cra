@@ -14,7 +14,7 @@ const PopularSection = () => {
     const cancelToken = axios.CancelToken.source();
     (async function () {
       if (pathname === "/courses") {
-        await dispatch(fetchCourses({ cancelToken: cancelToken.token }));
+        await dispatch(fetchCourses({ page: 1, limit: 1000, cancelToken: cancelToken.token }));
       } else {
         await dispatch(fetchCourses({ page: 1, limit: 4, cancelToken: cancelToken.token }));
       }

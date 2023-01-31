@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { fetchCourse } from "../../redux/courses/asyncActions";
 import { fetchFree, fetchMaterials } from "../../redux/lessons/asyncActions";
 import ShowEditer from "../Editer/ShowEditer";
+
 import ArrowButtons from "./ArrowButtons";
 import Comments from "./Comments";
 import Aside from "./Sections/Aside";
@@ -46,6 +47,7 @@ const Course = () => {
 
   return (
     <>
+ 
       <div className="container">
         <div className="wrapper">
           <div className="wrapper__inner">

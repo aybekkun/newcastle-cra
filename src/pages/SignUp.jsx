@@ -11,11 +11,8 @@ import { userReg } from "../redux/auth/asyncActions";
 
 const SignUp = () => {
   const dispatch = useDispatch();
-
   const { isAuth } = useSelector((state) => state.auth);
-
   let location = useLocation();
-
   const inputRef = React.useRef(null);
   const nameRef = React.useRef(null);
   const passwordRef = React.useRef(null);
@@ -23,7 +20,7 @@ const SignUp = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await dispatch(
-      userReg({ name: nameRef.current.value, phone: inputRef.current.value, password: passwordRef.current.value })
+      userReg({ name: nameRef.current.value, phone: inputRef.current.value.split(' ').join(''), password: passwordRef.current.value })
     );
   };
   if (isAuth) {
@@ -51,9 +48,9 @@ const SignUp = () => {
           value={"+998"}
           inputRef={inputRef}
           // onAccept={(value, mask) => console.log(value)}
-          mask={"+{998}000000000"}
+          mask={"+{998} 00 000 00 00"}
           name="phone"
-          maxLength={13}
+          maxLength={17}
           placeholder="Telefon raqam"
           type="tel"
           className="sign__tel"

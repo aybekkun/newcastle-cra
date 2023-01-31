@@ -17,7 +17,8 @@ const SignIn = () => {
   const passwordRef = React.useRef(null);
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(userAuth({ phone: inputRef.current.value, password: passwordRef.current.value }));
+
+    await dispatch(userAuth({ phone: inputRef.current.value.split(' ').join(''), password: passwordRef.current.value }));
   };
 
   if (isAuth) {
@@ -32,9 +33,9 @@ const SignIn = () => {
           value={"+998"}
           inputRef={inputRef}
           // onAccept={(value, mask) => console.log(value)}
-          mask={"+{998}000000000"}
+          mask={"+{998} 00 000 00 00"}
           name="phone"
-          maxLength={13}
+          maxLength={17}
           placeholder="Telefon raqam"
           type="tel"
           className="sign__tel"

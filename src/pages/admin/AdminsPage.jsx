@@ -1,7 +1,7 @@
 import { Button, Table } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdmins } from "../../redux/admin/asyncActions";
+import { deleteAdmin, fetchAdmins } from "../../redux/admin/asyncActions";
 
 const columns = [
   {
@@ -16,7 +16,7 @@ const columns = [
   },
   {
     title: "Actions",
-    render: (row, record) => <UserAction studentId={record.id} username={record.user_name} />,
+    render: (row, record) => <UserAction adminId={record.id} username={record.user_name} />,
   },
 ];
 
@@ -43,15 +43,17 @@ const UserAction = ({ adminId, username }) => {
   const [isSending, setIsSending] = React.useState(false);
 
   const onClickConfirm = async () => {
-    if (window.confirm(`${username} Kurstan kursni bekor qilinsinmi?`)) {
+    if (window.confirm(`${username} Admin olinsinmi`)) {
       setIsSending(true);
+      await dispatch(deleteAdmin({ id: adminId }));
+      await dispatch(fetchAdmins());
       setIsSending(false);
     }
   };
   return (
     <div>
       <Button loading={isSending} onClick={onClickConfirm} size="small" danger>
-        Delete from course
+       Delete from admin
       </Button>
     </div>
   );

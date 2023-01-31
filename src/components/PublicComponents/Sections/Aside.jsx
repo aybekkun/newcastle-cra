@@ -6,11 +6,12 @@ import AccordionItem from "../AccordionItem";
 const Aside = ({ id }) => {
   const { course, isLoading } = useSelector((state) => state.courses);
   const { user } = useSelector((state) => state.auth);
-  console.log(user.role);
+  const isThere = user.courses.some((item) => item.course_id === Number(id));
+
   return (
     <aside className="aside">
       <h3 className="aside__title">Materials</h3>
-      {user.role === "guest" ? (
+      {user.role === "guest" || user.role === "user" || !isThere ? (
         <>
           {course.lessons &&
             course.lessons.map((item) => (
