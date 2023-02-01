@@ -32,7 +32,7 @@ const SignIn = () => {
         <IMaskInput
           value={"+998"}
           inputRef={inputRef}
-          // onAccept={(value, mask) => console.log(value)}
+
           mask={"+{998} 00 000 00 00"}
           name="phone"
           maxLength={17}

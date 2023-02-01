@@ -1,4 +1,8 @@
 .comments {
+  padding-top: 100px;
+  img {
+    margin: 0 !important;
+  }
   &__send {
     padding: 38px 20px;
     border: 1px solid #a5a5a4;
@@ -32,6 +36,9 @@
   &__box {
     display: flex;
     align-items: center;
+    img {
+      margin-bottom: 0;
+    }
   }
   &__item {
     padding-top: 20px;
@@ -78,9 +85,15 @@
   }
   &__text {
     font-weight: 400;
-    font-size: 24px;
-    line-height: 34px;
+    font-size: 20px;
+    line-height: 24px;
     color: #232323;
+  }
+  .btn {
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
   }
 }
 @media (max-width: 620px) {

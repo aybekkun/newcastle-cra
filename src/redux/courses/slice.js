@@ -1,8 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createCourse, fetchCourse, fetchCourses } from "./asyncActions";
+import { createCourse, fetchCourse, fetchCourseFree, fetchCourses } from "./asyncActions";
 const initialState = {
   data: [],
-  course: {},
+  course: {
+    id: 0,
+    title: "",
+    description: "",
+    price: 0,
+    status: null,
+    started_at: null,
+    finished_at: null,
+    image: "",
+    sub_lesson_2s_id: 0,
+    learners_count: 0,
+    rating_count: 0,
+    rating_mark_overall: 0,
+    sub_lesson_2s: [],
+    lessons: [],
+  },
   materials: [],
   isSending: false,
   isLoading: true,
@@ -34,7 +49,22 @@ export const coursesSlice = createSlice({
     builder.addCase(fetchCourse.pending, (state) => {
       state.isLoading = true;
     });
+
     builder.addCase(fetchCourse.rejected, (state, action) => {
+      state.course = {};
+      state.materials = [];
+      state.isLoading = false;
+    });
+    builder.addCase(fetchCourseFree.fulfilled, (state, action) => {
+      state.course = action.payload.data;
+      state.materials = action.payload.data.lessons;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchCourseFree.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(fetchCourseFree.rejected, (state, action) => {
       state.course = {};
       state.materials = [];
       state.isLoading = false;

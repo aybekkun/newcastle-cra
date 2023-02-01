@@ -24,7 +24,7 @@ const AddCoursePage = () => {
     fd.append("image", image);
     await dispatch(createCourse(fd));
     navigate("/admin/");
-    // console.log("Success:", values);
+  
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);

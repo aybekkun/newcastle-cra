@@ -22,7 +22,16 @@ export const fetchCourse = createAsyncThunk("courses/fetchCourse", async (params
     return thunkAPI.rejectWithValue("Не удалось создать курсов");
   }
 });
-
+export const fetchCourseFree = createAsyncThunk("courses/fetchCourseFree", async (params, thunkAPI) => {
+  try {
+    const response = await $host.get(`freecourses/${params.id}`, {
+      cancelToken: params.cancelToken,
+    });
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue("Не удалось создать курсов");
+  }
+});
 export const createCourse = createAsyncThunk("courses/createCourse", async (params, thunkAPI) => {
   try {
     const response = await $host.post("courses", params, {

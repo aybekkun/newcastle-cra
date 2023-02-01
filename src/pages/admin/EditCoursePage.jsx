@@ -35,7 +35,7 @@ const EditCoursePage = () => {
 
     await dispatch(updateCourse({ id: id, fd }));
     navigate("/admin/");
-    // console.log("Success:", values);
+
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);

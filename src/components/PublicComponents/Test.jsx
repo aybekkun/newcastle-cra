@@ -28,7 +28,7 @@ const Test = ({ blocks, isInner = false }) => {
       { arr, blockIndex: blockIndex, checkedId: index },
     ];
     setCheckedArr(checkedFilter);
-    //  console.log(arr, index);
+
   };
 
   const onCheckTest = async () => {

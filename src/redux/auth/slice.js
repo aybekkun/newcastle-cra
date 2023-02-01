@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { userAuth, userCheck, userReg } from "./asyncActions";
 const initialState = {
   user: {
-    id: 0,
+    id: null,
     name: "",
     phone: "",
     role: "guest",

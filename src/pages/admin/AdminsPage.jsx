@@ -23,7 +23,7 @@ const columns = [
 const AdminsPage = () => {
   const dispatch = useDispatch();
   const { admins } = useSelector((state) => state.admins);
-  console.log(admins);
+
   React.useEffect(() => {
     (async function () {
       await dispatch(fetchAdmins());

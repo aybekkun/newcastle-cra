@@ -1,5 +1,5 @@
 import { Button, Input, Select } from "antd";
-import React, { useRef } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { createTest, fetchMaterials, updateSubSubLesson } from "../../../redux/lessons/asyncActions";
@@ -16,8 +16,8 @@ const LessonEditMaterials = () => {
   const [subInput, setSubInput] = React.useState("");
   const [materialsType, setMaterialsType] = React.useState("Materials");
   const [data, setData] = React.useState([]);
-  const isMounted = React.useRef(false);
-  console.log("data", data);
+
+
   React.useEffect(() => {
     (async function () {
       await dispatch(fetchMaterials({ id: id }));

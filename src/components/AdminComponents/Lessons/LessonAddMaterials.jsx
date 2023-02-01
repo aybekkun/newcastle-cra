@@ -20,8 +20,7 @@ const LessonAddMaterials = ({ id, handleChangeTab }) => {
     if (!subInput || !subSelectId || !data) {
       alert("Hamma mag`lumatni kiriting!!!");
     } else {
-      console.log({ name: subInput, sub_lesson_id: subSelectId, data: data });
-      await dispatch(createSubSubLesson({ name: subInput, sub_lesson_id: subSelectId, data: data }));
+       await dispatch(createSubSubLesson({ name: subInput, sub_lesson_id: subSelectId, data: data }));
       if (subInput === "Test") {
         await dispatch(createTest({ name: subInput, sub_lesson_id: subSelectId, data: data }));
       }

@@ -54,7 +54,7 @@ const Editer = ({ blocks = [], handleSaveData }) => {
                 let formData = new FormData();
                 formData.append("audio", file);
                 let req = await $host.post(`${process.env.REACT_APP_BASE_URL}/api/v1/upload`, formData);
-                console.log(req.data);
+       
                 return req.data;
               } catch (e) {
                 console.error(e);

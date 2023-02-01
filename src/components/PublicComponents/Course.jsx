@@ -2,12 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchCourse } from "../../redux/courses/asyncActions";
+import { fetchCourse, fetchCourseFree } from "../../redux/courses/asyncActions";
 import { fetchFree, fetchMaterials } from "../../redux/lessons/asyncActions";
 import ShowEditer from "../Editer/ShowEditer";
 
 import ArrowButtons from "./ArrowButtons";
 import Comments from "./Comments";
+import CommentsMaterials from "./CommentsMaterials";
 import Aside from "./Sections/Aside";
 import Spinner from "./Spinner";
 import Test from "./Test";
@@ -15,16 +16,19 @@ import Test from "./Test";
 const Course = () => {
   const { blocks, lesson, isMaterialLoading } = useSelector((state) => state.lessons);
   const { isLoading, course } = useSelector((state) => state.courses);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
   const { id, courseId } = useParams();
-  const [activeTab, setActiveTab] = React.useState(0);
-
+  const isThere = user.courses.some((item) => item.course_id === Number(id));
   React.useEffect(() => {
     const cancelToken = axios.CancelToken.source();
     (async function () {
       window.scrollTo(0, 80);
-      await dispatch(fetchCourse({ id: id, cancelToken: cancelToken.token }));
+      if (user.role === "guest") {
+        await dispatch(fetchCourseFree({ id: id, cancelToken: cancelToken.token }));
+      } else {
+        await dispatch(fetchCourse({ id: id, cancelToken: cancelToken.token }));
+      }
     })();
     return () => {
       cancelToken.cancel();
@@ -47,7 +51,6 @@ const Course = () => {
 
   return (
     <>
- 
       <div className="container">
         <div className="wrapper">
           <div className="wrapper__inner">
@@ -71,15 +74,26 @@ const Course = () => {
                   </>
                 )}
                 <ArrowButtons />
-                {activeTab === 1 && (
+                {Number(courseId) === course.sub_lesson_2s_id && isThere ? (
                   <div data-tab-index="3" className="wrapper__desc" id="tab-3">
-                    <Comments />
+                    <Comments
+                      courseId={course.id}
+                      sublessonId={course.sub_lesson_2s_id}
+                      rating={course.rating_mark_overall}
+                      learners={course.learners_count}
+                      rated={course.rating_count}
+                    />
                   </div>
+                ) : isThere ? (
+                  <div data-tab-index="3" className="wrapper__desc" id="tab-3">
+                    <CommentsMaterials sublessonId={courseId} />
+                  </div>
+                ) : (
+                  <></>
                 )}
               </div>
             )}
           </div>
-
           <Aside id={id} />
         </div>
       </div>
