@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createCourse, fetchCourse, fetchCourseFree, fetchCourses } from "./asyncActions";
+import { createCourse, fetchCourse, fetchCourseFree, fetchCourses, fetchCoursesFooter } from "./asyncActions";
 const initialState = {
   data: [],
+  footerData: [],
   course: {
     id: 0,
     title: "",
@@ -40,6 +41,9 @@ export const coursesSlice = createSlice({
     builder.addCase(fetchCourses.fulfilled, (state, action) => {
       state.data = action.payload.data;
       state.total = action.payload.total;
+    });
+    builder.addCase(fetchCoursesFooter.fulfilled, (state, action) => {
+      state.footerData = action.payload.data;
     });
     builder.addCase(fetchCourse.fulfilled, (state, action) => {
       state.course = action.payload.data;

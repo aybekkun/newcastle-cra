@@ -1,9 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { fetchCoursesFooter } from "../../redux/courses/asyncActions";
 const Footer = () => {
-  const { data } = useSelector((state) => state.courses);
+  const dispatch = useDispatch();
+  const { footerData } = useSelector((state) => state.courses);
+ 
+  React.useEffect(() => {
+    (async function () {
+      await dispatch(fetchCoursesFooter({ page: 1, limit: 5 }));
+    })();
+  }, []);
+  const onScroll = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <footer className="footer">
       <div className="container">
@@ -88,41 +99,44 @@ const Footer = () => {
                 <h4>Useful links</h4>
               </li>
               <li className="footer__list-item">
-                <a href="#" className="footer__list-link">
+                <Link onClick={onScroll} to="/" className="footer__list-link">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="footer__list-item">
-                <a href="#" className="footer__list-link">
+                <Link onClick={onScroll} to="/about" className="footer__list-link">
                   About
-                </a>
+                </Link>
               </li>
               <li className="footer__list-item">
-                <a href="#" className="footer__list-link">
+                <Link onClick={onScroll} to="/courses" className="footer__list-link">
                   Courses
-                </a>
+                </Link>
               </li>
               <li className="footer__list-item">
-                <a href="#" className="footer__list-link">
+                <Link onClick={onScroll} to="/contact" className="footer__list-link">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
-            {data.length > 0 && (
+            {footerData.length > 0 && (
               <ul className="footer__list">
                 <li className="footer__list-title">
                   <h4>Courses</h4>
                 </li>
-                {data.map((course, i) => (
+                {footerData.map((course, i) => (
                   <li key={course.id} className="footer__list-item">
-                    <Link to={`/course/${course.id}/${course.sub_lesson_2s_id ? course.sub_lesson_2s_id : 0}`} className="footer__list-link">
+                    <Link
+                      to={`/course/${course.id}/${course.sub_lesson_2s_id ? course.sub_lesson_2s_id : 0}`}
+                      className="footer__list-link"
+                    >
                       {course.title}
                     </Link>
                   </li>
                 ))}
               </ul>
             )}
-
+            {/* 
             <ul className="footer__list">
               <li className="footer__list-title">
                 <h4>Pages</h4>
@@ -142,7 +156,7 @@ const Footer = () => {
                   Privacy Policy
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>

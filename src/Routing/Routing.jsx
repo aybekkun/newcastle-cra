@@ -22,8 +22,10 @@ const NotFound = lazy(() => import("../pages/NotFound"));
 const PopularPage = lazy(() => import("../pages/PopularPage"));
 const SignIn = lazy(() => import("../pages/SignIn"));
 const SignUp = lazy(() => import("../pages/SignUp"));
+const ContactPage = lazy(() => import("../pages/ContactPage"));
 const AdminsPage = lazy(() => import("../pages/admin/AdminsPage"));
 const CommentsPage = lazy(() => import("../pages/admin/CommentsPage"));
+const MyCoursesPage = lazy(() => import("../pages/MyCoursesPage"));
 const Routing = () => {
   return (
     <>
@@ -46,10 +48,26 @@ const Routing = () => {
             }
           />
           <Route
+            path="/contact"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <ContactPage />
+              </Suspense>
+            }
+          />
+          <Route
             path="/about"
             element={
               <Suspense fallback={<Spinner />}>
                 <AboutPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/mycourses"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <MyCoursesPage />
               </Suspense>
             }
           />

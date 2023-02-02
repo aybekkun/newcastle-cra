@@ -85,12 +85,12 @@
 }
 @media (max-width: 1040px) {
   .header {
-    &__signup {
-      margin-left: 20px;
-      width: 100%;
-      border: none;
-      outline: none;
-    }
+    // &__signup {
+    //   margin-left: 20px;
+    //   width: 100%;
+    //   border: none;
+    //   outline: none;
+    // }
   }
   .nav {
     &__list-item + li {
@@ -181,6 +181,7 @@
       display: block;
       margin-left: 0;
       padding: 10px 100px;
+      width: 100%;
     }
   }
   .nav {

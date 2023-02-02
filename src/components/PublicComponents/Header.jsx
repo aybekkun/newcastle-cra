@@ -1,9 +1,8 @@
-import React from "react";
 import cls from "classnames";
-import logo from "../../assets/logo.png";
-import useActive from "../../hooks/useActive.hook";
-import { Link } from "react-router-dom";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 import { logout } from "../../redux/auth/slice";
 const Header = () => {
   const [active, setActive] = React.useState(false);
@@ -44,7 +43,7 @@ const Header = () => {
             <ul className="nav__list">
               <li className="nav__list-item">
                 <Link to="/" onClick={handleClose} className="nav__list-link nav__list-link--active">
-                  Homepage
+                  Home
                 </Link>
               </li>
               <li className="nav__list-item">
@@ -58,8 +57,13 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav__list-item">
-                <Link to="/admin" onClick={handleClose} className="nav__list-link">
+                <Link to="/contact" onClick={handleClose} className="nav__list-link">
                   Contact
+                </Link>
+              </li>
+              <li className="nav__list-item">
+                <Link to="/mycourses" onClick={handleClose} className="nav__list-link">
+                  My Courses
                 </Link>
               </li>
               {/*   <li className="nav__list-item">
@@ -80,7 +84,7 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  {(user.role === "super-admin"||user.role === "admin") && (
+                  {(user.role === "super-admin" || user.role === "admin") && (
                     <Link to="/admin" onClick={handleClose} className="header__login">
                       Admin
                     </Link>

@@ -50,7 +50,7 @@ const GeneralPage = () => {
             description={item.description}
             lessons={item.lessons}
             onDelete={onDeleteCourse}
-            count={item.rating_count}
+            count={item.learners_count}
             mark={item.rating_mark_overall}
           />
         ))}

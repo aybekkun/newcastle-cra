@@ -20,6 +20,7 @@ const initialState = {
   },
   token: "",
   isAuth: false,
+  
 };
 
 export const authSlice = createSlice({

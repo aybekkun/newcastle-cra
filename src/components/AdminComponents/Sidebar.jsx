@@ -1,14 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logoImg from "../../assets/logo.png";
 import { logout } from "../../redux/auth/slice";
-import NavAccordion from "./NavAccordion";
 
 const Sidebar = () => {
-  const location = useLocation();
+
   const dispatch = useDispatch();
-  const pathname = location.pathname.split("/")[2];
+
   const { user } = useSelector((state) => state.auth);
   const onLogout = () => {
     if (window.confirm("Logout?")) {
@@ -131,6 +130,39 @@ const Sidebar = () => {
             </svg>
             Students
           </NavLink>
+          <NavLink to="comments" className={({ isActive }) => (isActive ? "active sidebar__link" : "sidebar__link")}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M8.25 15C10.9424 15 13.125 12.8174 13.125 10.125C13.125 7.43261 10.9424 5.25 8.25 5.25C5.55761 5.25 3.375 7.43261 3.375 10.125C3.375 12.8174 5.55761 15 8.25 15Z"
+                stroke="#343434"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M14.5703 5.43173C15.2408 5.24281 15.9441 5.19978 16.6326 5.30552C17.3212 5.41126 17.9791 5.66333 18.562 6.04475C19.1449 6.42616 19.6393 6.92807 20.012 7.51666C20.3846 8.10525 20.6268 8.76685 20.7221 9.45692C20.8175 10.147 20.764 10.8495 20.565 11.5171C20.366 12.1847 20.0263 12.8019 19.5687 13.3272C19.1111 13.8524 18.5463 14.2735 17.9123 14.5621C17.2782 14.8507 16.5897 15.0001 15.8931 15.0001"
+                stroke="#343434"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M1.5 18.5059C2.26138 17.4229 3.27215 16.539 4.44698 15.9288C5.62182 15.3186 6.92623 15.0001 8.25008 15C9.57393 14.9999 10.8784 15.3184 12.0532 15.9285C13.2281 16.5386 14.239 17.4225 15.0004 18.5054"
+                stroke="#343434"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M15.8926 15C17.2166 14.999 18.5213 15.3171 19.6962 15.9273C20.8712 16.5375 21.8819 17.4218 22.6426 18.5054"
+                stroke="#343434"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Comments
+          </NavLink>
           <NavLink to="billing" className={({ isActive }) => (isActive ? "active sidebar__link" : "sidebar__link")}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -164,15 +196,7 @@ const Sidebar = () => {
             </svg>
             Billing
           </NavLink>
-          <NavLink to="comments" className={({ isActive }) => (isActive ? "active sidebar__link" : "sidebar__link")}>
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121.86 122.88">
-              <path
-                stroke="#FFF"
-                d="M30.28,110.09,49.37,91.78A3.84,3.84,0,0,1,52,90.72h60a2.15,2.15,0,0,0,2.16-2.16V9.82a2.16,2.16,0,0,0-.64-1.52A2.19,2.19,0,0,0,112,7.66H9.82A2.24,2.24,0,0,0,7.65,9.82V88.55a2.19,2.19,0,0,0,2.17,2.16H26.46a3.83,3.83,0,0,1,3.82,3.83v15.55ZM28.45,63.56a3.83,3.83,0,1,1,0-7.66h53a3.83,3.83,0,0,1,0,7.66Zm0-24.86a3.83,3.83,0,1,1,0-7.65h65a3.83,3.83,0,0,1,0,7.65ZM53.54,98.36,29.27,121.64a3.82,3.82,0,0,1-6.64-2.59V98.36H9.82A9.87,9.87,0,0,1,0,88.55V9.82A9.9,9.9,0,0,1,9.82,0H112a9.87,9.87,0,0,1,9.82,9.82V88.55A9.85,9.85,0,0,1,112,98.36Z"
-              />
-            </svg>
-            Comments
-          </NavLink>
+         
         </div>
         <div className="sidebar__bottom">
           <Link to="/" onClick={onLogout} className="sidebar__link">
