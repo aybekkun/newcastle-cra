@@ -42,3 +42,12 @@ export const deleteComment = createAsyncThunk("comments/deleteAdmin", async (par
   }
 });
 
+export const editComment = createAsyncThunk("comments/deleteAdmin", async (params, thunkAPI) => {
+  const { id, ...data } = params;
+  try {
+    const response = await $host.put(`comments/${id}`, data);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue("Не удалось удалить коммент");
+  }
+});

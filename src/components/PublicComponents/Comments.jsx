@@ -5,7 +5,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment, fetchComments, fetchCommentsInfo, fetchUserComments } from "../../redux/comments/asyncActions";
 import { setCommentsClear, setCommentsCount } from "../../redux/comments/slice";
-
+import parser from "html-react-parser";
 const Comments = ({ courseId = 0, sublessonId = 0, rating = 0, learners = 0, rated = 0 }) => {
   const dispatch = useDispatch();
   const { isLoading, userComments, comments, total, pages } = useSelector((state) => state.comments);
@@ -105,7 +105,7 @@ const CommentsItem = ({ username = "", message = "" }) => {
       <div className="comments__avatar">{username[0]}</div>
       <div className="comments__desc">
         <div className="comments__name">{username}</div>
-        <p className="comments__text">{message}</p>
+        <pre className="comments__text">{message}</pre>
       </div>
     </div>
   );

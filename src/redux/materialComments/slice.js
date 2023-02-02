@@ -4,6 +4,7 @@ import { fetchMaterialComments, fetchMaterialCommentsInfo, fetchUserMaterialComm
 const initialState = {
   materialComments: [],
   userMaterialComments: [],
+  allMaterialComments: [],
   total: 0,
   pages: 0,
   currentPage: 1,
@@ -35,6 +36,7 @@ export const materialCommentsSlice = createSlice({
       state.isLoading = false;
       state.total = action.payload.total;
       state.pages = Math.ceil(action.payload.total / 5);
+      state.allMaterialComments = action.payload.data;
     });
     builder.addCase(fetchMaterialComments.fulfilled, (state, action) => {
       state.isLoading = false;

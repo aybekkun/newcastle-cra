@@ -4,6 +4,7 @@ import { fetchComments, fetchCommentsInfo, fetchUserComments } from "./asyncActi
 const initialState = {
   comments: [],
   userComments: [],
+  allComments: [],
   total: 0,
   pages: 0,
   currentPage: 1,
@@ -35,6 +36,7 @@ export const commentsSlice = createSlice({
       state.isLoading = false;
       state.total = action.payload.total;
       state.pages = Math.ceil(action.payload.total / 5);
+      state.allComments = action.payload.data;
     });
     builder.addCase(fetchComments.fulfilled, (state, action) => {
       state.isLoading = false;

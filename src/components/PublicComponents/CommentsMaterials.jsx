@@ -37,6 +37,9 @@ const CommentsMaterials = ({ sublessonId = 0 }) => {
     await dispatch(createMaterialComment({ sub_lesson_2_id: sublessonId, message: text }));
     await dispatch(fetchUserMaterialComments({ sub_lesson_2_id: sublessonId, user_id: user.id }));
   };
+  if (sublessonId === 0) {
+    return <></>;
+  }
   return (
     <div className="comments">
       {userMaterialComments.length < 1 ? (

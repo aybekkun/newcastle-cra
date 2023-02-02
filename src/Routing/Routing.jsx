@@ -23,6 +23,7 @@ const PopularPage = lazy(() => import("../pages/PopularPage"));
 const SignIn = lazy(() => import("../pages/SignIn"));
 const SignUp = lazy(() => import("../pages/SignUp"));
 const AdminsPage = lazy(() => import("../pages/admin/AdminsPage"));
+const CommentsPage = lazy(() => import("../pages/admin/CommentsPage"));
 const Routing = () => {
   return (
     <>
@@ -135,6 +136,14 @@ const Routing = () => {
             element={
               <Suspense fallback={<Spinner />}>
                 <BillingPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="comments"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <CommentsPage />
               </Suspense>
             }
           />
