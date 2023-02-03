@@ -1,14 +1,13 @@
 import { Rate } from "antd";
-import starIcon from "../../assets/icons/star.svg";
-import userIcon from "../../assets/icons/user.svg";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import starIcon from "../../assets/icons/star.svg";
+import userIcon from "../../assets/icons/user.svg";
 import { createComment, fetchComments, fetchCommentsInfo, fetchUserComments } from "../../redux/comments/asyncActions";
-import { setCommentsClear, setCommentsCount } from "../../redux/comments/slice";
-import parser from "html-react-parser";
+import { setCommentsClear } from "../../redux/comments/slice";
 const Comments = ({ courseId = 0, sublessonId = 0, rating = 0, learners = 0, rated = 0 }) => {
   const dispatch = useDispatch();
-  const { isLoading, userComments, comments, total, pages } = useSelector((state) => state.comments);
+  const { isLoading, userComments, comments, pages } = useSelector((state) => state.comments);
   const [page, setPage] = React.useState(0);
   const { user } = useSelector((state) => state.auth);
   const [rate, setRate] = React.useState(0);
