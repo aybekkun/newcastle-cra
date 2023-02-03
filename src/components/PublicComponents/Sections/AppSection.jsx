@@ -1,6 +1,6 @@
 
 import googleIcon from "../../../assets/google.svg";
-import phoneImg from "../../../assets/phone.png";
+import phoneImg from "../../../assets/phone.webp";
 
 const AppSection = () => {
   return (

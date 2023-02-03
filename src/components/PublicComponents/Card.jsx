@@ -1,7 +1,6 @@
 import { Button, Space } from "antd";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import cardImg from "../../assets/card.jpg";
-import clockIcon from "../../assets/icons/clock.svg";
+import cardImg from "../../assets/card.webp";
 import listIcon from "../../assets/icons/list.svg";
 import starIcon from "../../assets/icons/star.svg";
 import userIcon from "../../assets/icons/user.svg";

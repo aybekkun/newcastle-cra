@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import logoImg from "../../assets/logo.png";
+import logoImg from "../../assets/logo.webp";
 import { logout } from "../../redux/auth/slice";
 
 const Sidebar = () => {

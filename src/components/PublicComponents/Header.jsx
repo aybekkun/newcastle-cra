@@ -2,7 +2,7 @@ import cls from "classnames";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.webp";
 import { logout } from "../../redux/auth/slice";
 const Header = () => {
   const [active, setActive] = React.useState(false);

@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import manOne from "../../../assets/man-1.jpg";
-import manTwo from "../../../assets/man-2.jpg";
+import manOne from "../../../assets/man-1.webp";
+import manTwo from "../../../assets/man-2.webp";
 const CertificateSection = () => {
   const { user } = useSelector((state) => state.auth);
   return (

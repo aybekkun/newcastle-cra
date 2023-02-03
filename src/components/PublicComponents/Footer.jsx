@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.webp";
 import { fetchCoursesFooter } from "../../redux/courses/asyncActions";
 const Footer = () => {
   const dispatch = useDispatch();

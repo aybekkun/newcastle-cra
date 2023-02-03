@@ -76,7 +76,7 @@ const CoursePage = () => {
                     pharetra venenatis ut enim facilisi ornare. Tincidunt nam sed in proin ornare id a accumsan
                     maecenas.
                   </p>
-                  <img src="images/course.jpg" alt="Course" />
+                  <img src="images/course.webp" alt="Course" />
                   <CourseInfo />
                 </div>
               )}

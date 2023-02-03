@@ -1,5 +1,5 @@
 import React from "react";
-import manThree from "../../../assets/man-3.jpg";
+import manThree from "../../../assets/man-3.webp";
 import manFour from "../../../assets/man-4.jpg";
 const PrepareSection = () => {
   return (
@@ -20,16 +20,14 @@ const PrepareSection = () => {
                 <li className="prepare__list-item">
                   ELEMENTARY Unitlar soni 12 Yangi so'zlar (wordlist) 1000 Daraja A1 +
                 </li>
-                <li className="prepare__list-item">
-                  Pre-Intermadiate Unitlar soni 12 Yangi so'zlar (wordlist) 1100 Daraja A2
-                </li>
               </ul>
               <ul className="prepare__list">
                 <li className="prepare__list-item">
+                  Pre-Intermadiate Unitlar soni 12 Yangi so'zlar (wordlist) 1100 Daraja A2
+                </li>
+                <li className="prepare__list-item">
                   Intermadiate Unitlar soni 12 Yangi so'zlar (wordlist) 1000 Daraja B1
                 </li>
-                <li className="prepare__list-item">Tincidunt sem sed tellus ullamcorper nulla phasellus</li>
-                <li className="prepare__list-item">Tincidunt sem sed tellus ullamcorper nulla phasellus</li>
               </ul>
             </div>
           </div>

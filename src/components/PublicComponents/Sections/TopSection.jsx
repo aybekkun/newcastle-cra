@@ -1,5 +1,5 @@
 import React from "react";
-import topImg from "../../../assets/top.png";
+import topImg from "../../../assets/top.webp";
 import googleIcon from "../../../assets/google.svg";
 import topBg from "../../../assets/top-bg.svg";
 import { useSelector } from "react-redux";

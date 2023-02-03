@@ -1,6 +1,6 @@
 import React from "react";
-import registerBgImg from "../assets/reg-bg.jpg";
-import logoImg from "../assets/logo.png";
+import registerBgImg from "../assets/reg-bg.webp";
+import logoImg from "../assets/logo.webp";
 import { Link, NavLink, Outlet } from "react-router-dom";
 const RegisterLayout = () => {
   return (
