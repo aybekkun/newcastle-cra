@@ -1,8 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import manOne from "../../../assets/man-1.jpg";
 import manTwo from "../../../assets/man-2.jpg";
 const CertificateSection = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <section className="certificate">
       <div className="container">
@@ -22,9 +25,9 @@ const CertificateSection = () => {
               foydalanib siz ingliz tilida matnlar tarjima qilasiz, audiolar eshitasiz, shu so'zlar ishtirokida og'zaki
               va yozma gaplar tuzasiz. Har xil mavzularda kichik va katta insholar yozishni o'rganasiz!{" "}
             </p>
-            <a href="#" className="certificate__btn btn">
-             Boshlash
-            </a>
+            <Link to={user.role === "guest" ? "/signup" : "/courses"} className="certificate__btn btn">
+              Boshlash
+            </Link>
           </div>
         </div>
       </div>

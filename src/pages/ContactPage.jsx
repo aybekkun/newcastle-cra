@@ -10,32 +10,22 @@ const ContactPage = () => {
             <h3 className="title">Contact us</h3>
             <div className="contact__desc">
               <h4 className="contact__title">Headquaters</h4>
-              <p className="text">I.Karimov kóshesi №76ùy. Baǵdar FONON zergerlik dúkanı.</p>
+              <p className="text">
+                New Castle o'quv markazi 1 <br /> 26-mikrorayon filiallari{" "}
+              </p>
               <h4 className="contact__title">Phone</h4>
-              <p className="text">📞 (61) 225 66 25 | 🕓 8:30-23:30.</p>
+              <p className="text">📞 55 101 70 70 | 🕓 9:00-18:00.</p>
               <h4 className="contact__title">E-mail</h4>
-              <p className="text">newcatle@gmail.com</p>
+              <p className="text">newaction.lc@gmail.com</p>
               <h4 className="contact__title">Social</h4>
               <ul className="footer__social">
                 <li className="footer__social-item">
-                  <a href="#" target="_blank" className="footer__social-link">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
-                      <g clipPath="url(#clip0_52_211)">
-                        <path
-                          d="M15.402 21V14.034H17.735L18.084 11.326H15.402V9.598C15.402 8.814 15.62 8.279 16.744 8.279H18.178V5.857C17.4838 5.78334 16.7861 5.74762 16.088 5.75C14.021 5.75 12.606 7.012 12.606 9.33V11.326H10.268V14.034H12.606V21H4C3.73478 21 3.48043 20.8946 3.29289 20.7071C3.10536 20.5196 3 20.2652 3 20V4C3 3.73478 3.10536 3.48043 3.29289 3.29289C3.48043 3.10536 3.73478 3 4 3H20C20.2652 3 20.5196 3.10536 20.7071 3.29289C20.8946 3.48043 21 3.73478 21 4V20C21 20.2652 20.8946 20.5196 20.7071 20.7071C20.5196 20.8946 20.2652 21 20 21H15.402Z"
-                          fill="#00214B"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_52_211">
-                          <rect width="24" height="24" fill="#00214B" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </a>
-                </li>
-                <li className="footer__social-item">
-                  <a href="#" target="_blank" className="footer__social-link">
+                  <a
+                    href="https://instagram.com/newaction_lc?igshid=ZDdkNTZiNTM="
+                    target="_blank"
+                    className="footer__social-link"
+                    rel="noreferrer"
+                  >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                       <g clipPath="url(#clip0_52_215)">
                         <path
@@ -52,7 +42,7 @@ const ContactPage = () => {
                   </a>
                 </li>
                 <li className="footer__social-item">
-                  <a href="#" className="footer__social-link">
+                  <a href="https://t.me/newaction_lc" target="_blank" className="footer__social-link" rel="noreferrer">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                       <g clipPath="url(#clip0_52_219)">
                         <path
@@ -69,7 +59,7 @@ const ContactPage = () => {
                   </a>
                 </li>
                 <li className="footer__social-item">
-                  <a href="#" className="footer__social-link">
+                  <a href="https://www.youtube.com/@newaction_lc" className="footer__social-link">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
                       <g clipPath="url(#clip0_52_223)">
                         <path
@@ -91,7 +81,7 @@ const ContactPage = () => {
           <div className="contact__box map">
             <iframe
               title="map"
-              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2943.8910204555755!2d59.62288004885966!3d42.45133480022478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDLCsDI3JzA0LjkiTiA1OcKwMzcnMjMuNyJF!5e0!3m2!1sru!2s!4v1675336201961!5m2!1sru!2s"
+              src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d5885.915712641441!2d59.585696!3d42.471185!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDLCsDI4JzE2LjMiTiA1OcKwMzUnMDguNSJF!5e0!3m2!1sru!2s!4v1675404078879!5m2!1sru!2s"
               width="100%"
               height="100%"
               style={{ border: 0 }}
