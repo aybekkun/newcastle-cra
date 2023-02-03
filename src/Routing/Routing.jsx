@@ -5,6 +5,7 @@ import MainLayout from "../layouts/MainLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import RegisterLayout from "../layouts/RegisterLayout";
 import AdminLayout from "../layouts/AdminLayout";
+import { useSelector } from "react-redux";
 
 const Course = lazy(() => import("../components/PublicComponents/Course"));
 const AddCoursePage = lazy(() => import("../pages/admin/AddCoursePage"));
@@ -27,6 +28,7 @@ const AdminsPage = lazy(() => import("../pages/admin/AdminsPage"));
 const CommentsPage = lazy(() => import("../pages/admin/CommentsPage"));
 const MyCoursesPage = lazy(() => import("../pages/MyCoursesPage"));
 const Routing = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <>
       <Routes>
@@ -109,105 +111,108 @@ const Routing = () => {
             }
           />
         </Route>
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminLayout />
-            </ProtectedRoute>
-          }
-        >
+        {(user.role === "admin" || user.role === "super-admin") && (
           <Route
-            index
+            path="/admin"
             element={
-              <Suspense fallback={<Spinner />}>
-                <GeneralPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="settings"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <SettingsPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="students"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <StudentsPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="admins"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <AdminsPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="billing"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <BillingPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="comments"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <CommentsPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="addcourse"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <AddCoursePage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="edit/:id"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <EditCoursePage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="lesson"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <LessonAddPage />
-              </Suspense>
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
             }
           >
             <Route
-              path=":id"
+              index
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <GeneralPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="settings"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <SettingsPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="students"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <StudentsPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="admins"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <AdminsPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="billing"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <BillingPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="comments"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <CommentsPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="addcourse"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <AddCoursePage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="edit/:id"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <EditCoursePage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="lesson"
               element={
                 <Suspense fallback={<Spinner />}>
                   <LessonAddPage />
                 </Suspense>
               }
+            >
+              <Route
+                path=":id"
+                element={
+                  <Suspense fallback={<Spinner />}>
+                    <LessonAddPage />
+                  </Suspense>
+                }
+              />
+            </Route>
+            <Route
+              path="editer/:id"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <LessonEditMaterials />
+                </Suspense>
+              }
             />
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route
-            path="editer/:id"
-            element={
-              <Suspense fallback={<Spinner />}>
-                <LessonEditMaterials />
-              </Suspense>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Route>
+        )}
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

@@ -61,11 +61,14 @@ const Header = () => {
                   Contact
                 </Link>
               </li>
-              <li className="nav__list-item">
-                <Link to="/mycourses" onClick={handleClose} className="nav__list-link">
-                  My Courses
-                </Link>
-              </li>
+              {user.courses.length > 0 && (
+                <li className="nav__list-item">
+                  <Link to="/mycourses" onClick={handleClose} className="nav__list-link">
+                    My Courses
+                  </Link>
+                </li>
+              )}
+
               {/*   <li className="nav__list-item">
                 <Link to="/" onClick={handleClose} className="nav__list-link">
                   Pages

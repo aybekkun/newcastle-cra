@@ -12,7 +12,7 @@ const TopSection = () => {
             <h1 className="top__title">100% Online Ingliz tilini o'rganish platformasi</h1>
             <p className="top__desc">O'qituvchisiz ham Ingliz tilini tez va samarali o'rganing</p>
             <a href="#" className="btn top__btn">
-              Get started
+              Boshlash
             </a>
             <div className="top__apps">
               <a href="#" className="top__app">

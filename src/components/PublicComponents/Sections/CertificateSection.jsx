@@ -23,7 +23,7 @@ const CertificateSection = () => {
               va yozma gaplar tuzasiz. Har xil mavzularda kichik va katta insholar yozishni o'rganasiz!{" "}
             </p>
             <a href="#" className="certificate__btn btn">
-              Get started
+             Boshlash
             </a>
           </div>
         </div>
