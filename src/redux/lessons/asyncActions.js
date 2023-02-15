@@ -87,6 +87,16 @@ export const createSubSubLesson = createAsyncThunk("lessons/createSubSubLesson",
   }
 });
 
+export const deleteSubSubLesson = createAsyncThunk("lessons/deleteSubSubLesson", async (params, thunkAPI) => {
+  try {
+    const { id } = params;
+    const response = await $host.delete(`subLessons2/${id}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue("Не удалось создать lesson");
+  }
+});
+
 export const updateSubSubLesson = createAsyncThunk("lessons/createSubSubLesson", async (params, thunkAPI) => {
   const { id, ...data } = params;
   try {

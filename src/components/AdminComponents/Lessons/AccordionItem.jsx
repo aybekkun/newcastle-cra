@@ -2,8 +2,17 @@ import { Space } from "antd";
 import React from "react";
 import { Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-const AccordionItem = ({ title = "Lesson", link = "", available = false }) => {
-
+import { useDispatch } from "react-redux";
+import { deleteSubSubLesson } from "../../../redux/lessons/asyncActions";
+import { setCoursesCount } from "../../../redux/courses/slice";
+const AccordionItem = ({ id = 0, title = "Lesson", link = "", available = false }) => {
+  const dispatch = useDispatch();
+  const onDelete = async () => {
+    if (window.confirm(`${title} ochirilsinmi`)) {
+      await dispatch(deleteSubSubLesson({ id: id }));
+      dispatch(setCoursesCount());
+    }
+  };
   return (
     <div className="accordion__item">
       <div className="accordion__item-box">
@@ -18,7 +27,7 @@ const AccordionItem = ({ title = "Lesson", link = "", available = false }) => {
           <Link to={`/admin/editer/${link}`}>
             <Button size="small">Edit</Button>
           </Link>
-          <Button size="small" danger>
+          <Button onClick={onDelete} size="small" danger>
             Delete
           </Button>
         </Space>

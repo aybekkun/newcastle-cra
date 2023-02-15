@@ -4,7 +4,7 @@ import React from "react";
 import { Button, Form, Input, Popover, Space } from "antd";
 import { useDispatch } from "react-redux";
 import { setCoursesCount } from "../../../redux/courses/slice";
-import { deleteLesson, editLesson, editSubLesson } from "../../../redux/lessons/asyncActions";
+import { deleteLesson, deleteSubLesson, editLesson, editSubLesson } from "../../../redux/lessons/asyncActions";
 
 const Accordion = ({ type = "", id = 0, title = "Lesson", children }) => {
   const dispatch = useDispatch();
@@ -39,6 +39,9 @@ const Accordion = ({ type = "", id = 0, title = "Lesson", children }) => {
         dispatch(setCoursesCount());
       }
       if (type === "sublesson") {
+        await dispatch(deleteSubLesson({ id: id }));
+        setOpen(false);
+        dispatch(setCoursesCount());
       }
     }
   };

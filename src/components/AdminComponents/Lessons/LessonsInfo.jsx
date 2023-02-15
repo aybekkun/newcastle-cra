@@ -16,7 +16,7 @@ const LessonsInfo = () => {
               <Accordion id={sub.id} type="sublesson" title={sub.name} key={sub.id}>
                 {sub.sub_lesson_2s.length > 0 ? (
                   sub.sub_lesson_2s.map((subItem) => (
-                    <AccordionItem type="material" link={subItem.id} title={subItem.name} key={subItem.id} />
+                    <AccordionItem id={subItem.id} type="material" link={subItem.id} title={subItem.name} key={subItem.id} />
                   ))
                 ) : (
                   <AccordionItem title="No courses" />

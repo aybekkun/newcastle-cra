@@ -20,7 +20,16 @@ const Edit = ({ blocks = [], handleSaveData }) => {
     const editor = new EditorJS({
       holder: "editer",
       tools: {
-        quote: Quote,
+        quote: {
+          class: Quote,
+          inlineToolbar: true,
+          shortcut: "CMD+SHIFT+O",
+          config: {
+            quotePlaceholder: "Enter a quote",
+            captionPlaceholder: "Quote's author",
+          },
+          
+        },
         embed: Embed,
         table: Table,
         marker: Marker,
@@ -54,7 +63,7 @@ const Edit = ({ blocks = [], handleSaveData }) => {
                 let formData = new FormData();
                 formData.append("audio", file);
                 let req = await $host.post(`${process.env.REACT_APP_BASE_URL}/api/v1/upload`, formData);
-            
+
                 return req.data;
               } catch (e) {
                 console.error(e);
