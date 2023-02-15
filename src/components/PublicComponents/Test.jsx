@@ -4,6 +4,8 @@ import ShowEditer from "../Editer/ShowEditer";
 import cls from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckTest } from "../../redux/checkTest/asyncActions";
+
+import parse from "html-react-parser";
 const Test = ({ blocks, isInner = false }) => {
   const dispatch = useDispatch();
   const { lesson } = useSelector((state) => state.lessons);
@@ -81,7 +83,7 @@ const Test = ({ blocks, isInner = false }) => {
                 <label name={blockIndex} key={i}>
                   <input onClick={() => onClickTest(block.data.items, i, blockIndex)} type="radio" name={blockIndex} />
                   <span className="checkmark"></span>
-                  <span className="checkmark__text">{item.text}</span>
+                  <span className="checkmark__text">{parse(item.text)}</span>
                 </label>
               ));
             } else if (block.type === "paragraph") {

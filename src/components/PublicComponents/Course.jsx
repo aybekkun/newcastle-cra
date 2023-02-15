@@ -57,6 +57,7 @@ const Course = () => {
             <div className="wrapper__title-box">
               <h3 className="subtitle wrapper__subtitle">Kurslar </h3>
             </div>
+
             {isLoading ? (
               <div className="tab-content wrapper__desc-box">
                 <Spinner />

@@ -99,7 +99,7 @@ const Quote = ({ block }) => {
         Show
       </button>
       {active && (
-        <p style={{ marginBottom: "20px", marginTop: "10px" }}>{block.data.text ? parse(block.data.text) : "null"}</p>
+        <div style={{ marginBottom: "20px", marginTop: "10px" }}>{block.data.text ? parse(block.data.text) : "null"}</div>
       )}
     </div>
   );
