@@ -20,7 +20,12 @@ const Aside = ({ id }) => {
                   <Accordion title={sub.name} key={sub.id}>
                     {sub.sub_lesson_2s.length > 0 ? (
                       sub.sub_lesson_2s.map((subItem) => (
-                        <AccordionItem available={false} title={subItem.name} key={subItem.id} />
+                        <AccordionItem
+                          available={item.available}
+                          link={`${id}/${subItem.id}`}
+                          title={subItem.name}
+                          key={subItem.id}
+                        />
                       ))
                     ) : (
                       <AccordionItem title="No courses" />

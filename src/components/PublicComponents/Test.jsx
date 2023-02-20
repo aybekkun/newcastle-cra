@@ -6,11 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { createCheckTest } from "../../redux/checkTest/asyncActions";
 
 import parse from "html-react-parser";
+import { fetchCourse } from "../../redux/courses/asyncActions";
+import { useParams } from "react-router-dom";
 const Test = ({ blocks, isInner = false }) => {
   const dispatch = useDispatch();
   const { lesson } = useSelector((state) => state.lessons);
   const { user } = useSelector((state) => state.auth);
-
+  const { id } = useParams();
   const [test, setTest] = React.useState([]);
 
   const [checkedArr, setCheckedArr] = React.useState([]);
@@ -30,7 +32,6 @@ const Test = ({ blocks, isInner = false }) => {
       { arr, blockIndex: blockIndex, checkedId: index },
     ];
     setCheckedArr(checkedFilter);
-
   };
 
   const onCheckTest = async () => {
@@ -46,6 +47,7 @@ const Test = ({ blocks, isInner = false }) => {
         await dispatch(
           createCheckTest({ lesson_id: lesson.id, user_id: user.id, number: test.length, overall: result })
         );
+        await dispatch(fetchCourse({ id: id }));
         window.scrollTo(0, 0);
       }
 
@@ -121,7 +123,7 @@ const Test = ({ blocks, isInner = false }) => {
                         wrong: !item.checked && checkedId === i,
                       })}
                     >
-                      {item.text}
+                      {parse(item.text)}
                     </span>
                   </label>
                 ));

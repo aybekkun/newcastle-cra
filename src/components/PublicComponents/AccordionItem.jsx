@@ -1,6 +1,4 @@
 import React from "react";
-import playIcon from "../../assets/icons/play.svg";
-import materialsIcon from "../../assets/icons/materials.svg";
 import { NavLink } from "react-router-dom";
 const AccordionItem = ({
   title = "Lesson",

@@ -40,6 +40,8 @@ const Course = () => {
       window.scrollTo(0, 80);
       if (course.sub_lesson_2s_id === Number(courseId)) {
         await dispatch(fetchFree({ id: courseId, cancelToken: cancelToken.token }));
+      } else if (user.role === "guest" || user.role === "user" || !isThere ) {
+        await dispatch(fetchFree({ id: courseId, cancelToken: cancelToken.token }));
       } else {
         await dispatch(fetchMaterials({ id: courseId, cancelToken: cancelToken.token }));
       }
