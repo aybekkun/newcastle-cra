@@ -11,6 +11,8 @@ import { useParams } from "react-router-dom";
 const Test = ({ blocks, isInner = false }) => {
   const dispatch = useDispatch();
   const { lesson } = useSelector((state) => state.lessons);
+  const { course } = useSelector((state) => state.courses);
+
   const { user } = useSelector((state) => state.auth);
   const { id } = useParams();
   const [test, setTest] = React.useState([]);
@@ -45,9 +47,9 @@ const Test = ({ blocks, isInner = false }) => {
       });
       if (!isInner) {
         await dispatch(
-          createCheckTest({ lesson_id: lesson.id, user_id: user.id, number: test.length, overall: result })
+          createCheckTest({ lesson_id: lesson.lesson_id, user_id: user.id, number: test.length, overall: result })
         );
-        await dispatch(fetchCourse({ id: id }));
+       
         window.scrollTo(0, 0);
       }
 
