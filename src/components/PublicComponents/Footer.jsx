@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer__inner">
           <div className="footer__main">
-            <img className="footer__img" src={logo} alt="logo" />
+            <img  className="footer__img logo__img" src={logo} alt="logo" />
             <p className="footer__desc">O'qituvchisiz ham Ingliz tilini tez va samarali o'rganing</p>
             <ul className="footer__social">
               <li className="footer__social-item">

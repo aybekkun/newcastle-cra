@@ -4,13 +4,15 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const ArrowButtons = () => {
   const { materials, course } = useSelector((state) => state.courses);
+  const { blocks } = useSelector((state) => state.lessons);
+
   const { id, courseId } = useParams();
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const navArray = course && course.sub_lesson_2s ? course.sub_lesson_2s.map((item) => item.id) : [0];
   const isPrevDisabled = navArray[0] == courseId || navArray[0] === 0 || navArray.length < 1;
-  const isNextDisabled = navArray[navArray.length - 1] == courseId || navArray[0] === 0 || navArray.length < 1;
+  const isNextDisabled = navArray[navArray.length - 1] == courseId || navArray[0] === 0 || navArray.length < 1 || blocks.length < 1 ;
 
   const onNavigate = (num) => {
     const findIndex = navArray.indexOf(Number(courseId));
@@ -19,9 +21,7 @@ const ArrowButtons = () => {
     }
     //   setCount((prev) => prev + num);
   };
-  if (user.role === "guest" || user.role === "user") {
-    return <></>;
-  }
+
   return (
     <div className="arrow">
       <button onClick={() => onNavigate(-1)} disabled={isPrevDisabled} className="btn">{`< Prev`}</button>

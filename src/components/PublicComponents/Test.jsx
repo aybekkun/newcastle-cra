@@ -1,20 +1,18 @@
+import cls from "classnames";
 import { ParagraphOutput } from "editorjs-react-renderer";
 import React from "react";
-import ShowEditer from "../Editer/ShowEditer";
-import cls from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { createCheckTest } from "../../redux/checkTest/asyncActions";
+import ShowEditer from "../Editer/ShowEditer";
 
 import parse from "html-react-parser";
-import { fetchCourse } from "../../redux/courses/asyncActions";
-import { useParams } from "react-router-dom";
 const Test = ({ blocks, isInner = false }) => {
   const dispatch = useDispatch();
   const { lesson } = useSelector((state) => state.lessons);
-  const { course } = useSelector((state) => state.courses);
+
 
   const { user } = useSelector((state) => state.auth);
-  const { id } = useParams();
+
   const [test, setTest] = React.useState([]);
 
   const [checkedArr, setCheckedArr] = React.useState([]);
